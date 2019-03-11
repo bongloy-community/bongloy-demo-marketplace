@@ -1,0 +1,101 @@
+%section.section-content.bg.padding-y.border-top
+  .container
+    .row
+      %main.col-sm-9
+        .card
+          %table.table.table-hover.shopping-cart-wrap
+            %thead.text-muted
+              %tr
+                %th{:scope => "col"} Product
+                %th{:scope => "col", :width => "120"} Quantity
+                %th{:scope => "col", :width => "120"} Price
+                %th.text-right{:scope => "col", :width => "200"} Action
+            %tbody
+              %tr
+                %td
+                  %figure.media
+                    .img-wrap
+                      = image_tag('items/1.jpg', :class=> 'img-thumbnail img-sm')
+                    %figcaption.media-body
+                      %h6.title.text-truncate Product name goes here
+                      %dl.dlist-inline.small
+                        %dt Size:
+                        %dd XXL
+                      %dl.dlist-inline.small
+                        %dt Color:
+                        %dd Orange color
+                %td
+                  %select.form-control
+                    %option 1
+                    %option 2
+                    %option 3
+                    %option 4
+                %td
+                  .price-wrap
+                    %var.price USD 145
+                    %small.text-muted (USD10 each)
+                %td.text-right
+                  %a.btn.btn-outline-danger{:href => ""} × Remove
+              %tr
+                %td
+                  %figure.media
+                    .img-wrap
+                      = image_tag("items/2.jpg", :class=>"img-thumbnail img-sm")
+                    %figcaption.media-body
+                      %h6.title.text-truncate Product name goes here
+                      %dl.dlist-inline.small
+                        %dt Size:
+                        %dd XXL
+                      %dl.dlist-inline.small
+                        %dt Color:
+                        %dd Orange color
+                %td
+                  %select.form-control
+                    %option 1
+                    %option 2
+                    %option 3
+                    %option 4
+                %td
+                  .price-wrap
+                    %var.price USD 35
+                    %small.text-muted (USD10 each)
+                %td.text-right
+                  %a.btn.btn-outline-danger.btn-round{:href => ""} × Remove
+              %tr
+                %td
+                  %figure.media
+                    .img-wrap
+                      = image_tag("items/3.jpg", :class=> "img-thumbnail img-sm")
+                    %figcaption.media-body
+                      %h6.title.text-truncate Product name goes here
+                      %dl.dlist-inline.small
+                        %dt Size:
+                        %dd XXL
+                      %dl.dlist-inline.small
+                        %dt Color:
+                        %dd Orange color
+                %td
+                  %select.form-control
+                    %option 1
+                    %option 2
+                    %option 3
+                    %option 4
+                %td
+                  .price-wrap
+                    %var.price USD 45
+                    %small.text-muted (USD5 each)
+                %td.text-right
+                  %a.btn.btn-outline-danger.btn-round{:href => ""} × Remove
+      %aside.col-sm-3
+        %dl.dlist-align
+          %dt Total price:
+          %dd.text-right USD 568
+        %dl.dlist-align
+          %dt Discount:
+          %dd.text-right USD 658
+        %dl.dlist-align.h4
+          %dt Total:
+          %dd.text-right
+            %strong USD 1,650
+        %hr/
+        %a.btn.btn-outline-primary.btn-round{:href => ""} Checkout
