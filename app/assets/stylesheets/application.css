@@ -2,4 +2,5 @@
 *= require "theme/bootstrap"
 *= require "theme/ui"
 *= require "theme/responsive"
+*= require "font-awesome"
 */
