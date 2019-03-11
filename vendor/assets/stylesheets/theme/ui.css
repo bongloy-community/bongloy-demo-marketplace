@@ -2,7 +2,7 @@
 UIkit bootstrap-ecommerce.com 
 ===================== */
 /* ==================== INCLUDE FONTS ======================= */
-@import url("../fonts/roboto/font.css");
+/* @import url("../fonts/roboto/font.css"); */
 html {
   font-size: 15px; }
 
@@ -1612,7 +1612,9 @@ article:after,
   vertical-align: middle; }
 
 .header-main {
-  position: relative; }
+  position: relative;
+  background-color: rgba(235,235,235,0.7) !important;
+}
 
 .widget-header {
   margin-left: 7px;
