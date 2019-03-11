@@ -1,0 +1,29 @@
+#code_register_2
+  %article.card-body.mx-auto{:style => "max-width: 400px;"}
+    %h4.card-title.mt-3.text-center Create Account
+    = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
+      = render "devise/shared/error_messages", resource: resource
+      .form-group.input-group
+        .input-group-prepend
+          %span.input-group-text
+            %i.fa.fa-user
+        %input.form-control{:name => "username", :placeholder => "Username", :type => "text"}/
+      .form-group.input-group
+        .input-group-prepend
+          %span.input-group-text
+            %i.fa.fa-envelope
+        = f.email_field :email, autofocus: true, autocomplete: "email", :class => "form-control", :placeholder => "Email address"
+      .form-group.input-group
+        .input-group-prepend
+          %span.input-group-text
+            %i.fa.fa-lock
+        = f.password_field :password, autocomplete: "new-password", :class => "form-control", :placeholder => "Create password"
+      .form-group.input-group
+        .input-group-prepend
+          %span.input-group-text
+            %i.fa.fa-lock
+        = f.password_field :password_confirmation, autocomplete: "new-password", :class => "form-control", :placeholder => "Repeat password"
+      .form-group
+        %button.btn.btn-primary.btn-block{:type => "submit"} Create Account
+      %p.text-center
+        Have an account? #{render "devise/shared/links"}

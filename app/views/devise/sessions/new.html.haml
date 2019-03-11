@@ -1,0 +1,22 @@
+#code_login_3{:align => "center"}
+  .col-md-4.mb-auto
+    .card
+      %article.card-body
+        %h4.card-title.text-center.mb-4.mt-1 Sign in
+        %hr/
+        = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+          .form-group
+            .input-group
+              .input-group-prepend
+                %span.input-group-text
+                  %i.fa.fa-user
+              = f.email_field :email, autofocus: true, autocomplete: "email", :placeholder => "Email or login", :class => "form-control"
+          .form-group
+            .input-group
+              .input-group-prepend
+                %span.input-group-text
+                  %i.fa.fa-lock
+              %input.form-control{:placeholder => "******", :type => "password"}/
+          .form-group
+            = f.submit "Log in", :class=>"btn btn-primary btn-block"
+        = render "devise/shared/links"
