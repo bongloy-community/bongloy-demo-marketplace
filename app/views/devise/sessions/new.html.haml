@@ -1,4 +1,4 @@
-#code_login_3{:align => "center"}
+#code_login{:align => "center"}
   .col-md-4.mb-auto
     .card
       %article.card-body
@@ -16,7 +16,7 @@
               .input-group-prepend
                 %span.input-group-text
                   %i.fa.fa-lock
-              %input.form-control{:placeholder => "******", :type => "password"}/
+              = f.password_field :password, :placeholder => "******", :class => "form-control"
           .form-group
             = f.submit "Log in", :class=>"btn btn-primary btn-block"
         = render "devise/shared/links"
