@@ -3,4 +3,5 @@
 *= require "theme/ui"
 *= require "theme/responsive"
 *= require "font-awesome"
+*= require "theme/custom"
 */

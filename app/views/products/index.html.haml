@@ -1,0 +1,33 @@
+.main-content
+  %section#products
+    #code_cart
+      .card
+        .card-body
+          = link_to "New", new_product_path, :class => "float-right btn btn-outline-primary"
+          %h4.card-title.mb-4.mt-1 Products
+          %table.table.table-hover.shopping-cart-wrap
+            %thead.text-muted
+              %tr
+                %th{:scope => "col"} Product
+                %th{:scope => "col"} Description
+                %th{:scope => "col", :width => "120"} Price
+                %th.text-right{:scope => "col", :width => "200"} Action
+            %tbody
+              - @product.each do |p|
+                %tr
+                  %td
+                    %figure.media
+                      .img-wrap
+                        = image_tag("#{p.image}")
+                      %figcaption.media-body
+                        %h6.title.text-truncate
+                          = p.name
+                  %td
+                    .description-wrap
+                      = p.description
+                  %td
+                    .price-wrap
+                      %var.price USD 145
+                  %td.text-right
+                    = link_to "x Remove", product_path(p), :class => "btn btn-outline-danger btn-sm", method: :delete
+                    = link_to "Edit", edit_product_path(p), :class => "btn btn-outline-success btn-sm"

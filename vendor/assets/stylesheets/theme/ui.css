@@ -1814,7 +1814,7 @@ article:after,
   display: inline-block; }
 
 .dlist-align dt {
-  width: 90px;
+  width: 20%;
   float: left;
   word-wrap: break-word; }
 .dlist-align dd {
