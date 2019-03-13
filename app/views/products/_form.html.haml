@@ -1,0 +1,6 @@
+= simple_form_for @product do |f|
+  = f.input :name
+  = f.input :price
+  = f.input :description
+  = f.input :image, as: :file, :input_html => {:preview_version => :thumb}
+  = f.button :submit, "Create", :class => "btn btn-primary"

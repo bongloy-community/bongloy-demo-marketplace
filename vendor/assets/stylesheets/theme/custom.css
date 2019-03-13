@@ -1,0 +1,23 @@
+.stripe-connect.light-blue {
+    background: #b5c3d8;
+    background-image: linear-gradient(#b5c3d8, #9cabc2);
+    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
+}
+
+.stripe-connect {
+    display: inline-block;
+    margin-bottom: 1px;
+    background-image: linear-gradient(#28A0E5, #015E94);
+    -webkit-font-smoothing: antialiased;
+    border: 0;
+    padding: 1px;
+    height: 30px;
+    text-decoration: none;
+    border-radius: 4px;
+    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}

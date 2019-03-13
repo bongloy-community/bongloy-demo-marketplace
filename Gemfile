@@ -20,9 +20,14 @@ gem 'devise'
 gem "bootstrap-sass"
 gem "font-awesome-rails"
 gem "haml-rails", "~> 1.0"
+gem "dotenv-rails"
+gem 'simple_form'
+gem 'show_for'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem "pry"
+  gem "pry-byebug"
 end
 
 group :development do

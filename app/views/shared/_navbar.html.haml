@@ -13,22 +13,26 @@
                 .input-group-append
                   %button.btn.btn-primary{:type => "submit"}
                     %i.fa.fa-search
-          .col-lg-6-24.col-sm-7.col-8.order-2.order-lg-3
+          .widgets-wrap.col-lg-6-24.col-sm-7.col-8.order-2.order-lg-3
             %a.widget-header.border-left.pl-3.ml-3{:href => "#"}
               .icontext
                 .icon-wrap.icon-sm.round.border
                   %i.fa.fa-shopping-cart
               %span.badge.badge-pill.badge-danger.notify 0
-            .widget-header
+            .widget-header.dropdown
               - if current_user
-                %a{"data-offset" => "20,10", "data-toggle" => "dropdown", :href => "#"}
+                %a{"aria-expanded" => "false", "data-offset" => "20,10", "data-toggle" => "dropdown", :href => "#"}
                   .icontext
                     .icon-wrap.icon-sm.round.border
                       %i.fa.fa-user
-                    .text-wrap
-                      %div
-                        Dashboard
-                        %i.fa.fa-caret-down
+                  .dropdown-menu.dropdown-menu-right{:style => "position: absolute; transform: translate3d(-120px, 44px, 0px); top: 0px; left: 0px; will-change: transform;", "x-placement" => "bottom-end"}
+                    %li
+                      = link_to("My account", users_path, :class => "dropdown-item")
+                    - if current_user.stripe_account_id
+                      %li
+                        = link_to("Store", products_path, :class => "dropdown-item")
+                    %li
+                      = link_to("Log Out", destroy_user_session_path, :class => "dropdown-item")
               - else
                 = link_to 'Sign In', new_user_session_path
                 %span.dark-transp

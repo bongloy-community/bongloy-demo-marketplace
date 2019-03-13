@@ -16,4 +16,5 @@
 //= require activestorage
 //= require turbolinks
 //= require theme/script
+//= require theme/bootstrap.bundle.min
 //= require_tree .
