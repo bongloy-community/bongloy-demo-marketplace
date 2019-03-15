@@ -29,11 +29,15 @@ class ProductsController < ApplicationController
   def edit; end
 
   def update
-    if @product.update(product_params)
-      flash[:notice] = 'Your product was successfully updated.'
-      redirect_to products_path
+    respond_to do |format|
+      if @product.update(product_params)
+        format.html { redirect_to @product, notice: 'Product was successfully updated.' }
+        format.json { render :show, status: :ok, location: @product}
+      else
+        format.html { render :edit }
+        format.json { render json: @product.errors, status: :unprocessable_entity }
+      end
     end
-    render action: 'edit'
   end
 
   private
@@ -43,6 +47,6 @@ class ProductsController < ApplicationController
   end
 
   def product_params
-    params.require(:product).permit(:name, :price, :description, :image).merge(user_id: current_user.id)
+    params.require(:product).permit(:name, :price, :description, :cover_product).merge(user_id: current_user.id)
   end
 end
