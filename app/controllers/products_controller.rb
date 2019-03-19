@@ -2,11 +2,15 @@ class ProductsController < ApplicationController
   before_action :set_product, only: %i[destroy update edit]
 
   def index
-    @product = Product.all
+    @product = Product.where(user_id: current_user.id)
   end
 
   def new
     @product = Product.new
+  end
+
+  def show
+    @product = Product.find(params[:id])
   end
 
   def create

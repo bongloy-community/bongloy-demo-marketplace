@@ -2,5 +2,6 @@
   = f.input :name
   = f.input :price
   = f.input :description
-  = f.input :cover_product, as: :file, :input_html => {:preview_version => :thumb}
+  = f.input :cover_product
   = f.button :submit, "Create", :class => "btn btn-primary"
+  = link_to "Cancel", products_path, :class => "btn btn-outline-info"

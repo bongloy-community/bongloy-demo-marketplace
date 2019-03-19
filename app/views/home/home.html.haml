@@ -2,44 +2,14 @@
   %section#products
     #code_prod2
       .row
-        .col-md-3
-          %figure.card.card-product
-            .img-wrap
-              = image_tag('items/3.jpg')
-            %figcaption.info-wrap
-              %a.title{:href => "#"} Good item name
-              .action-wrap
-                %a.btn.btn-primary.btn-sm.float-right{:href => "#"} Add to cart
-                .price-wrap.h5
-                  %span.price-new $1280
-                  %del.price-old $1980
-        .col-md-3
-          %figure.card.card-product
-            .img-wrap
-              = image_tag('items/4.jpg')
-            %figcaption.info-wrap
-              %a.title{:href => "#"} The name of product
-              .action-wrap
-                %a.btn.btn-primary.btn-sm.float-right{:href => "#"} Add to cart
-                .price-wrap.h5
-                  %span.price-new $280
-        .col-md-3
-          %figure.card.card-product
-            .img-wrap
-              = image_tag('items/5.jpg')
-            %figcaption.info-wrap
-              %a.title{:href => "#"} Name of product
-              .action-wrap
-                %a.btn.btn-primary.btn-sm.float-right{:href => "#"} Add to cart
-                .price-wrap.h5
-                  %span.price-new $280
-        .col-md-3
-          %figure.card.card-product
-            .img-wrap
-              = image_tag('items/6.jpg')
-            %figcaption.info-wrap
-              %a.title{:href => "#"} The name of product
-              .action-wrap
-                %a.btn.btn-primary.btn-sm.float-right{:href => "#"} Add to cart
-                .price-wrap.h5
-                  %span.price-new $280
+        - @products.each do |p|
+          .col-md-3
+            %figure.card.card-product
+              .img-wrap
+                = link_to image_tag(p.cover_product), product_path(p.id)
+              %figcaption.info-wrap
+                = link_to p.name, product_path(p.id)
+                .action-wrap
+                  %a.btn.btn-primary.btn-sm.float-right{:href => "#"} Buy
+                  .price-wrap.h5
+                    %span.price-new $#{p.price}

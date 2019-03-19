@@ -63,6 +63,21 @@ SimpleForm.setup do |config|
     b.use :hint, wrap_with: { tag: 'small', class: 'form-text text-muted' }
   end
 
+  config.wrappers :horizontal_file_input, tag: "div", class: "form-group", error_class: "has-error" do |b|
+    b.use :html5
+    b.use :placeholder
+    b.optional :maxlength
+    b.optional :minlength
+    b.optional :readonly
+    b.use :label, class: "col-sm-3 control-label"
+
+    b.wrapper tag: "div", class: "col-sm-9" do |ba|
+      ba.use :input
+      ba.use :error, wrap_with: { tag: "span", class: "help-block" }
+      ba.use :hint,  wrap_with: { tag: "p", class: "help-block" }
+    end
+  end
+
   # vertical input for boolean
   config.wrappers :vertical_boolean, tag: 'fieldset', class: 'form-group', error_class: 'form-group-invalid', valid_class: 'form-group-valid' do |b|
     b.use :html5
@@ -240,6 +255,23 @@ SimpleForm.setup do |config|
     end
   end
 
+  config.wrappers :input_group, tag: "div", class: "form-group", error_class: "form-group-invalid", valid_class: "form-group-valid" do |b|
+    b.use :html5
+    b.use :placeholder
+    b.optional :maxlength
+    b.optional :minlength
+    b.optional :pattern
+    b.optional :min_max
+    b.optional :readonly
+    b.use :label, class: "form-control-label"
+    b.wrapper :input_group_tag, tag: "div", class: "input-group" do |ba|
+      ba.optional :prepend
+      ba.use :input, class: "form-control", error_class: "is-invalid", valid_class: "is-valid"
+      ba.optional :append
+    end
+    b.use :full_error, wrap_with: { tag: "div", class: "invalid-feedback d-block" }
+    b.use :hint, wrap_with: { tag: "small", class: "form-text text-muted" }
+  end
 
   # inline forms
   #

@@ -5,7 +5,7 @@
         .row.align-items-center
           .col-lg-5-24.col-sm-5.col-4
             .brand-wrap
-              = image_tag('logos/logo.png', width:'205', height:'50')
+              = link_to image_tag('logos/logo.png', width:'205', height:'50'), root_path
           .col-lg-13-24.col-sm-12.order-3.order-lg-2
             %form{:action => "#"}
               .input-group.w-100
@@ -14,11 +14,6 @@
                   %button.btn.btn-primary{:type => "submit"}
                     %i.fa.fa-search
           .widgets-wrap.col-lg-6-24.col-sm-7.col-8.order-2.order-lg-3
-            %a.widget-header.border-left.pl-3.ml-3{:href => "#"}
-              .icontext
-                .icon-wrap.icon-sm.round.border
-                  %i.fa.fa-shopping-cart
-              %span.badge.badge-pill.badge-danger.notify 0
             .widget-header.dropdown
               - if current_user
                 %a{"aria-expanded" => "false", "data-offset" => "20,10", "data-toggle" => "dropdown", :href => "#"}
