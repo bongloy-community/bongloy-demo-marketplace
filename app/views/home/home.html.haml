@@ -10,6 +10,7 @@
               %figcaption.info-wrap
                 = link_to p.name, product_path(p.id)
                 .action-wrap
-                  %a.btn.btn-primary.btn-sm.float-right{:href => "#"} Buy
+                  = link_to "Buy", new_product_charge_path(p.id), :class => "btn btn-primary btn-sm float-right"
+                  -#%a.btn.btn-primary.btn-sm.float-right{:href => "#"} Buy
                   .price-wrap.h5
                     %span.price-new $#{p.price}

@@ -6,12 +6,12 @@
 
 @font-face {
   font-family: 'PaymentFont';
-  src: asset-url('paymentfont-webfont.eot');
-  src: asset-url('paymentfont-webfont.eot?#iefix') format('embedded-opentype'),
-       asset-url('paymentfont-webfont.woff') format('woff2'),
-       asset-url('paymentfont-webfont.woff') format('woff'),
-       asset-url('paymentfont-webfont.ttf') format('truetype'),
-       asset-url('paymentfont-webfont.svg#paymentfont-webfont') format('svg');
+  src: url('paymentfont-webfont.eot');
+  src: url('paymentfont-webfont.eot?#iefix') format('embedded-opentype'),
+       url('paymentfont-webfont.woff') format('woff2'),
+       url('paymentfont-webfont.woff') format('woff'),
+       url('paymentfont-webfont.ttf') format('truetype'),
+       url('paymentfont-webfont.svg#paymentfont-webfont') format('svg');
   font-weight: normal;
   font-style: normal;
 }

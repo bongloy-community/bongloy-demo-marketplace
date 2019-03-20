@@ -27,7 +27,7 @@
                       = p.description
                   %td
                     .price-wrap
-                      %var.price USD 145
+                      %var.price $ #{p.price}
                   %td.text-right
                     = link_to "x Remove", product_path(p), :class => "btn btn-outline-danger btn-sm", method: :delete
                     = link_to "Edit", edit_product_path(p), :class => "btn btn-outline-success btn-sm"
