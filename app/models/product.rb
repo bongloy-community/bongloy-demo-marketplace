@@ -2,6 +2,7 @@ class Product < ApplicationRecord
   belongs_to :user
   has_one_attached :cover_product
   validates :name, :price, presence: true
+
   validate :cover_product_presence
 
   def cover_product_presence

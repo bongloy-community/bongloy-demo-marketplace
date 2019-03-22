@@ -6,6 +6,7 @@
           .col-md-3
             %figure.card.card-product
               .img-wrap
+                -# = link_to image_tag(p.cover_product.processed.service_url)
                 = link_to image_tag(p.cover_product), product_path(p.id)
               %figcaption.info-wrap
                 = link_to p.name, product_path(p.id)
