@@ -25,9 +25,12 @@ gem 'simple_form'
 gem 'show_for'
 
 group :development, :test do
+  gem "haml_lint", require: false
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem "pry"
   gem "pry-byebug"
+  gem "rspec-rails"
+  gem "shoulda-matchers"
 end
 
 group :development do
@@ -41,6 +44,7 @@ group :test do
   gem 'capybara', '>= 2.15'
   gem 'selenium-webdriver'
   gem 'chromedriver-helper'
+  gem "factory_bot_rails"
 end
 
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]

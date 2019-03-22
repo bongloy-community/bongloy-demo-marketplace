@@ -21,4 +21,8 @@ RSpec.feature "Users", type: :feature do
     click_on("Sign In")
     expect(current_path).to eq((new_user_session_path))
   end
+
+  scenario "visitor register to the shop" do
+
+  end
 end
