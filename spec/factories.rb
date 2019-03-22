@@ -11,7 +11,7 @@ FactoryBot.define do
     price { 200 }
     trait :with_cover_product do
       after(:build) do |product|
-        product.cover_product.attach(io: File.open(Rails.root.join('spec', 'fixtures', 'dummy_attachment.jpg')), filename: 'dummy_attachment.jpg', content_type: 'image/jpg')
+        product.cover_product.attach(io: File.open(Rails.root.join("spec", "fixtures", "dummy_attachment.jpg")), filename: "dummy_attachment.jpg", content_type: "image/jpg")
       end
     end
   end

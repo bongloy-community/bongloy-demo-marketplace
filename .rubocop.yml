@@ -1,4 +1,4 @@
-<%# require: rubocop-rspec %>
+require: rubocop-rspec
 
 Style/FrozenStringLiteralComment:
   Enabled: false
@@ -7,7 +7,7 @@ Style/StringLiterals:
   EnforcedStyle: double_quotes
 
 Metrics/LineLength:
-  Max: 200
+  Max: 100
   Exclude:
     - app/views/**/*.html.haml
 
@@ -48,4 +48,3 @@ RSpec/DescribeClass:
 
 RSpec/DescribedClass:
   Enabled: false
-

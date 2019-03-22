@@ -17,10 +17,10 @@ class ProductsController < ApplicationController
     @product = Product.new(product_params)
 
     if @product.save
-      flash[:notice] = 'Your product was successfully created.'
+      flash[:notice] = "Your product was successfully created."
       redirect_to products_path
     else
-      render action: 'edit'
+      render action: "edit"
     end
   end
 
@@ -35,8 +35,8 @@ class ProductsController < ApplicationController
   def update
     respond_to do |format|
       if @product.update(product_params)
-        format.html { redirect_to products_path, notice: 'Product was successfully updated.' }
-        format.json { render :index, status: :ok, location: @product}
+        format.html { redirect_to products_path, notice: "Product was successfully updated." }
+        format.json { render :index, status: :ok, location: @product }
       else
         format.html { render :edit }
         format.json { render json: @product.errors, status: :unprocessable_entity }

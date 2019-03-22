@@ -1,6 +1,6 @@
-require 'rails_helper'
+require "rails_helper"
 
-RSpec.feature "Products", type: :feature do
+RSpec.describe "Products", type: :feature do
   let!(:user) { create(:user) }
   let!(:product) { create(:product, :with_cover_product, user_id: user.id, name: "Oppo") }
 
@@ -19,10 +19,10 @@ RSpec.feature "Products", type: :feature do
     fill_in "product[name]", with: "Samsung"
     fill_in "product[description]", with: "new smart phone comming"
     fill_in "product[price]", with: "500"
-    page.attach_file('product_cover_product', "#{::Rails.root}/spec/fixtures/dummy_attachment.jpg")
+    page.attach_file("product_cover_product", "#{::Rails.root}/spec/fixtures/dummy_attachment.jpg")
     click_on "Create"
 
-    expect(current_path).to eq(products_path)
+    expect(page).to have_current_path(products_path)
   end
 
   it "dispaly edit product" do
@@ -37,8 +37,8 @@ RSpec.feature "Products", type: :feature do
     fill_in "product[description]", with: "new smart phone comming"
     fill_in "product[price]", with: "500"
     click_on "Create"
-    
-    expect(current_path).to eq(products_path)
+
+    expect(page).to have_current_path(products_path)
     expect(page).to have_content("new Oppo")
   end
 

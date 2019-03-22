@@ -1,12 +1,12 @@
-require 'rails_helper'
+require "rails_helper"
 
-RSpec.feature "Visitors", type: :feature do
+RSpec.describe "Visitors", type: :feature do
   let!(:user) { create(:user) }
   let!(:product) { create(:product, :with_cover_product, user_id: user.id) }
 
   it "see the link menu" do
     visit root_path
-    
+
     expect(page).to have_content("Sign In")
     expect(page).to have_content("Register")
     expect(page).to have_link href: new_user_session_path
@@ -17,14 +17,14 @@ RSpec.feature "Visitors", type: :feature do
     visit root_path
     click_on("Register")
 
-    expect(current_path).to eq((new_user_registration_path))
+    expect(page).to have_current_path(new_user_registration_path)
   end
 
   it "click the login link" do
     visit root_path
     click_on("Sign In")
 
-    expect(current_path).to eq((new_user_session_path))
+    expect(page).to have_current_path(new_user_session_path)
   end
 
   it "display the products by all sellers" do
@@ -39,7 +39,7 @@ RSpec.feature "Visitors", type: :feature do
     visit root_path
     click_on(product.name)
 
-    expect(current_path).to eq(product_path(product))
+    expect(page).to have_current_path(product_path(product))
     expect(page).to have_content(product.description)
   end
 
@@ -47,7 +47,7 @@ RSpec.feature "Visitors", type: :feature do
     visit root_path
     click_on("Buy")
 
-    expect(current_path).to eq(new_product_charge_path(product))
+    expect(page).to have_current_path(new_product_charge_path(product))
     expect(page).to have_content("Payment information")
   end
 end

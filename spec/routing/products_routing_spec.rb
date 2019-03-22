@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe ProductsController, type: :routing do
   it { expect(get:    "/products").to   route_to("products#index") }
