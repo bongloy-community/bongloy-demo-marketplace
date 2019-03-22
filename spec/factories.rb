@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :user do
     email { "phanna@bongloy.com" }
-    shop_name { "Android" }
+    shop_name { "Mobile Shop" }
     password { "12345678" }
   end
 

@@ -25,6 +25,11 @@ RSpec.feature "Products", type: :feature do
     expect(current_path).to eq(products_path)
   end
 
+  it "dispaly edit product" do
+    visit edit_product_path(product)
+    expect(page).to have_field("product[name]", with: "Oppo")
+  end
+
   it "edit products" do
     visit edit_product_path(product)
 
