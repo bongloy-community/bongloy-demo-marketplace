@@ -3,6 +3,5 @@ class HomeController < ApplicationController
     @products = Product.all
   end
 
-  def index
-  end
+  def index; end
 end

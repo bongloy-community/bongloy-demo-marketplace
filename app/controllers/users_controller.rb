@@ -3,12 +3,11 @@ class UsersController < ApplicationController
     code = params[:code]
 
     response = HTTParty.post("https://connect.stripe.com/oauth/token",
-      :query => {
-        client_secret: ENV.fetch('SECRET_KEY'),
-        code: code,
-        grant_type: "authorization_code"
-      }
-    )
+                             query: {
+                               client_secret: ENV.fetch("SECRET_KEY"),
+                               code: code,
+                               grant_type: "authorization_code"
+                             })
 
     if response.key?("error")
       redirect_to users_show_url, notice: response["error_description"]
@@ -16,14 +15,12 @@ class UsersController < ApplicationController
       @user = User.find_by(id: current_user.id)
       @user.stripe_account_id = response["stripe_user_id"]
       @user.save
-      'Successfully connected with Stripe!'
+      "Successfully connected with Stripe!"
     end
   end
 
   def index
-    if params[:code]
-      stripe_connect
-    end
+    stripe_connect if params[:code]
     @user = User.find(current_user.id)
   end
 end

@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe "Products", type: :request do
   describe "GET /products" do
@@ -9,7 +9,7 @@ RSpec.describe "Products", type: :request do
         get(products_path)
         expect(response).to have_http_status(200)
       end
-      
+
       it "display all their own product" do
         user = create(:user)
         products = create_list(:product, 2, :with_cover_product, user_id: user.id)

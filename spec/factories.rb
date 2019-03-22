@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :user do
     email { "phanna@bongloy.com" }
-    shop_name { "Android" }
+    shop_name { "Mobile Shop" }
     password { "12345678" }
   end
 
@@ -11,7 +11,7 @@ FactoryBot.define do
     price { 200 }
     trait :with_cover_product do
       after(:build) do |product|
-        product.cover_product.attach(io: File.open(Rails.root.join('spec', 'fixtures', 'dummy_attachment.jpg')), filename: 'dummy_attachment.jpg', content_type: 'image/jpg')
+        product.cover_product.attach(io: File.open(Rails.root.join("spec", "fixtures", "dummy_attachment.jpg")), filename: "dummy_attachment.jpg", content_type: "image/jpg")
       end
     end
   end

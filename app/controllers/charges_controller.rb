@@ -4,15 +4,14 @@ class ChargesController < ApplicationController
   def new; end
 
   def create
-
     charge = Stripe::Charge.create(
-      :source => params[:token],
-      :amount      => @product.price,
-      :description => "#{@product.description}",
-      :currency    => 'USD',
-      :destination => {
-        :amount => @product.price,
-        :account => @product.user.stripe_user_id,
+      source: params[:token],
+      amount: @product.price,
+      description: @product.description.to_s,
+      currency: "USD",
+      destination: {
+        amount: @product.price,
+        account: @product.user.stripe_user_id
       }
     )
   end
