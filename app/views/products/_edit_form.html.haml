@@ -1,0 +1,11 @@
+= simple_form_for @product do |f|
+  = f.input :name
+  = f.input :price
+  = f.input :description
+  .row
+    .col-md-6
+      = f.input :cover_product, wrapper: "custom_file"
+    .col-md-5.offset-md-1
+      = image_tag(@product.cover_product, width: 100, height: 100, id: "image-preview")
+  = f.button :submit, "Create", :class => "btn btn-primary"
+  = link_to "Cancel", products_path, :class => "btn btn-outline-info"

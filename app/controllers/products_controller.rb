@@ -1,5 +1,5 @@
 class ProductsController < ApplicationController
-  before_action :set_product, only: %i[destroy update edit]
+  before_action :set_product, only: %i[destroy update show]
 
   def index
     @product = Product.where(user_id: current_user.id)
@@ -9,9 +9,7 @@ class ProductsController < ApplicationController
     @product = Product.new
   end
 
-  def show
-    @product = Product.find(params[:id])
-  end
+  def show; end
 
   def create
     @product = Product.new(product_params)
@@ -30,7 +28,9 @@ class ProductsController < ApplicationController
     redirect_to products_path
   end
 
-  def edit; end
+  def edit
+    @product = Product.with_attached_cover_product.where(id: params[:id]).where(user_id: current_user.id).first
+  end
 
   def update
     respond_to do |format|
