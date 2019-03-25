@@ -3,6 +3,9 @@ Rails.application.routes.draw do
   root "home#home"
   resources :products do
     resources :charges, only: %i[new create]
+    member do
+      delete :delete_attachment
+    end
   end
   resources :users, only: :index
 end

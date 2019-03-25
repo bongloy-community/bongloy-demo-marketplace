@@ -29,7 +29,7 @@ class ProductsController < ApplicationController
   end
 
   def edit
-    @product = Product.with_attached_cover_product.where(id: params[:id]).where(user_id: current_user.id).first
+    @product = current_user.products.find(params[:id])
   end
 
   def update
@@ -42,6 +42,11 @@ class ProductsController < ApplicationController
         format.json { render json: @product.errors, status: :unprocessable_entity }
       end
     end
+  end
+
+  def delete_attachment
+    @cover_product =Product.find(params[:id]).cover_product
+    @cover_product.purge
   end
 
   private
