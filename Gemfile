@@ -48,6 +48,7 @@ group :test do
   gem "chromedriver-helper"
   gem "factory_bot_rails"
   gem "selenium-webdriver"
+  gem "launchy"
 end
 
 gem "tzinfo-data", platforms: %i[mingw mswin x64_mingw jruby]

@@ -1,8 +1,8 @@
-class ProductsController < ApplicationController
-  before_action :set_product, only: %i[destroy update show]
+class Dashboard::ProductsController < ApplicationController
+  before_action :set_product, only: %i[destroy update show edit]
 
   def index
-    @product = Product.where(user_id: current_user.id)
+    @product = current_user.products
   end
 
   def new
@@ -16,7 +16,7 @@ class ProductsController < ApplicationController
 
     if @product.save
       flash[:notice] = "Your product was successfully created."
-      redirect_to products_path
+      redirect_to dashboard_products_path
     else
       render action: "edit"
     end
@@ -25,17 +25,15 @@ class ProductsController < ApplicationController
   def destroy
     @product.destroy
 
-    redirect_to products_path
+    redirect_to dashboard_products_path
   end
 
-  def edit
-    @product = current_user.products.find(params[:id])
-  end
+  def edit; end
 
   def update
     respond_to do |format|
       if @product.update(product_params)
-        format.html { redirect_to products_path, notice: "Product was successfully updated." }
+        format.html { redirect_to dashboard_products_path, notice: "Product was successfully updated." }
         format.json { render :index, status: :ok, location: @product }
       else
         format.html { render :edit }
@@ -45,14 +43,14 @@ class ProductsController < ApplicationController
   end
 
   def delete_attachment
-    @cover_product =Product.find(params[:id]).cover_product
+    @cover_product = Product.find(params[:id]).cover_product
     @cover_product.purge
   end
 
   private
 
   def set_product
-    @product = Product.find(params[:id])
+    @product = current_user.products.find(params[:id])
   end
 
   def product_params

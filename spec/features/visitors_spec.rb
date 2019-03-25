@@ -39,7 +39,7 @@ RSpec.describe "Visitors", type: :feature do
     visit root_path
     click_on(product.name)
 
-    expect(page).to have_current_path(product_path(product))
+    expect(page).to have_current_path(product_detail_path(product))
     expect(page).to have_content(product.description)
   end
 

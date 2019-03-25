@@ -12,7 +12,10 @@
             %td
               %figure.media
                 .img-wrap
-                  = image_tag(@product.cover_product, :class => "img-thumbnail img-sm")
+                  - if @product.cover_product.attached?
+                    = image_tag(@product.cover_product, :class => "img-thumbnail img-sm")
+                  - else
+                    = image_tag("https://via.placeholder.com/163", :class => "img-thumbnail img-sm")
                 %figcaption.media-body
                   %h6.title.text-truncate
                     = @product.name

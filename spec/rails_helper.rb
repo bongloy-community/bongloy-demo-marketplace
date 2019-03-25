@@ -25,4 +25,9 @@ RSpec.configure do |config|
   config.include Capybara::DSL
   config.include Warden::Test::Helpers
   config.include ControllerHelpers, type: :controller
+  Capybara.register_driver :selenium_chrome do |app|
+    Capybara::Selenium::Driver.new(app, browser: :chrome)
+  end
+
+  Capybara.javascript_driver = :selenium_chrome
 end

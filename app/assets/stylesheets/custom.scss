@@ -1,0 +1,21 @@
+div.cover_product {
+    position: relative;
+    float:left;
+    margin:5px;
+    padding: 5px;
+    border: 1px solid #ccc;
+}
+div.cover_product:hover img{
+    opacity:0.5;
+}
+div.cover_product:hover a{
+    display: block;
+    cursor: pointer;
+}
+div.cover_product a{
+    position:absolute;
+    display:none;
+    top:5px;
+    right:5px;
+    z-index: 1;
+}
