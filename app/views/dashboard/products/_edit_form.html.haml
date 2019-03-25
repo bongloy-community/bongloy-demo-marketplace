@@ -1,4 +1,4 @@
-= simple_form_for @product do |f|
+= simple_form_for [:dashboard, @product] do |f|
   = f.input :name
   = f.input :price
   = f.input :description

@@ -28,7 +28,9 @@ class Dashboard::ProductsController < ApplicationController
     redirect_to dashboard_products_path
   end
 
-  def edit; end
+  def edit
+    @product = Product.find(params[:id]) 
+  end
 
   def update
     respond_to do |format|

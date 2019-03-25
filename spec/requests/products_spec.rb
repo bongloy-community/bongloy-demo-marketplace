@@ -6,7 +6,7 @@ RSpec.describe "Products", type: :request do
       it "can access /products" do
         user = create(:user)
         sign_in(user)
-        get(products_path)
+        get(dashboard_products_path)
         expect(response).to have_http_status(200)
       end
 
@@ -15,7 +15,7 @@ RSpec.describe "Products", type: :request do
         products = create_list(:product, 2, :with_cover_product, user_id: user.id)
 
         sign_in(user)
-        visit(products_path)
+        visit(dashboard_products_path)
 
         expect(page).to have_content("OnePlus")
         expect(page).to have_content("smart phone")

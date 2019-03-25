@@ -7,11 +7,11 @@
             %figure.card.card-product
               .img-wrap
                 - if p.cover_product.attached?
-                  = link_to image_tag(p.cover_product), dashboard_product_path(p.id)
+                  = link_to image_tag(p.cover_product), product_detail_path(p.id)
                 - else
-                  = link_to image_tag("https://via.placeholder.com/150"), dashboard_product_path(p.id)
+                  = link_to image_tag("https://via.placeholder.com/150"), product_detail_path(p.id)
               %figcaption.info-wrap
-                -#= link_to p.name, dashboard_product_detail_path(p.id)
+                = link_to p.name, product_detail_path(p.id)
                 .action-wrap
                   = link_to "Buy", new_dashboard_product_charge_path(p.id), :class => "btn btn-primary btn-sm float-right"
                   .price-wrap.h5

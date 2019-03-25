@@ -11,7 +11,7 @@ RSpec.describe "Users", type: :feature do
     click_on("Create Account")
 
     expect(page).to have_current_path(root_path)
-    expect(page).to have_link("Store", href: products_path)
+    expect(page).to have_link("Store", href: dashboard_products_path)
     expect(page).to have_link("My account", href: users_path)
   end
 
@@ -37,18 +37,26 @@ RSpec.describe "Users", type: :feature do
     user = create(:user)
     sign_in(user)
     product = create(:product, :with_cover_product, user_id: user.id, name: "Hauwei")
-    visit products_path
+    visit dashboard_products_path
 
     expect(page).to have_content("Hauwei")
   end
 
+  it "can link to create new product" do
+    user_signin
+    visit dashboard_products_path
+    click_on "New"
+
+    expect(current_path).to eq(new_dashboard_product_path)
+  end
+  
   it "cannot see other seller product" do
     user = create(:user)
     other_user = create(:user, email: "other@example.com", shop_name: "other")
 
     sign_in(user)
     product = create(:product, :with_cover_product, user_id: other_user.id, name: "Hauwei")
-    visit products_path
+    visit dashboard_products_path
 
     expect(page).not_to have_content("Hauwei")
   end

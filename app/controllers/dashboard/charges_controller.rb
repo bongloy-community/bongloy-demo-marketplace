@@ -1,4 +1,4 @@
-class ChargesController < ApplicationController
+class Dashboard::ChargesController < ApplicationController
   before_action :set_product, only: %i[new create]
 
   def new; end

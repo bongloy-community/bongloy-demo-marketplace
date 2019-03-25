@@ -31,7 +31,7 @@
       .row
         .col-md-12
           .alert.alert-danger.d-none{ role: "alert", data: { name: "errorMessages"} }
-          = simple_form_for(:new_charge, wrapper: :input_group, url: product_charges_path, :html => {:autocomplete => "on", :data => { name: "paymentForm" }}) do |f|
+          = simple_form_for(:new_charge, wrapper: :input_group, url: dashboard_product_charges_path, :html => {:autocomplete => "on", :data => { name: "paymentForm" }}) do |f|
             = f.input :token, as: :hidden, input_html: { data: { name: "cardToken" } }
             = f.input :card_number, prepend: "<i id='card-brand-icon' class='pf pf-credit-card'></i>".html_safe, hint: "Use a sample card number listed below", as: :tel, placeholder: "Card Number", label: false, input_html: { name: nil, id: nil, data: { name: "cardNumber", target: "card-brand-icon" } }
             .row

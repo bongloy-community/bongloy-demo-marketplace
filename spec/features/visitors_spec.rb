@@ -47,7 +47,7 @@ RSpec.describe "Visitors", type: :feature do
     visit root_path
     click_on("Buy")
 
-    expect(page).to have_current_path(new_product_charge_path(product))
+    expect(page).to have_current_path(new_dashboard_product_charge_path(product))
     expect(page).to have_content("Payment information")
   end
 end
