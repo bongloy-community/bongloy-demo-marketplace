@@ -1,6 +1,7 @@
 class HomeController < ApplicationController
   def index
-    @products = Product.all
+    @products = Product.all.decorate
+    # @products = Product.all
   end
 
   def show
