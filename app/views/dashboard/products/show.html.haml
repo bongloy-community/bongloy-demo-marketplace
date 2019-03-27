@@ -4,10 +4,7 @@
       %article.gallery-wrap
         .img-big-wrap
           %div
-            - if @product.cover_product.attached?
-              =link_to image_tag(@product.cover_product), dashboard_product_path(@product.id), :data => { :'fancybox' => ''}
-            - else
-              =link_to image_tag("https://via.placeholder.com/150"),dashboard_product_path(@product.id), :data => { :'fancybox' => ''}
+            =link_to image_tag(@product.image), dashboard_product_path(@product.id), :data => { :'fancybox' => ''}
     %aside.col-sm-6
       %article.card-body
         %h3.title.mb-3=@product.name

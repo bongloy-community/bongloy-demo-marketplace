@@ -3,7 +3,7 @@ class Dashboard::ProductsController < ApplicationController
   before_action :set_product, only: %i[destroy update show edit]
 
   def index
-    @product = current_user.products
+    @product = current_user.products.decorate
   end
 
   def new
@@ -30,7 +30,7 @@ class Dashboard::ProductsController < ApplicationController
   end
 
   def edit
-    @product = Product.find(params[:id]) 
+    @product = Product.find(params[:id]).decorate
   end
 
   def update

@@ -18,11 +18,7 @@
                   %td
                     %figure.media
                       .img-wrap
-                        - if p.cover_product.attached?
-                          = image_tag p.cover_product, width: 150
-                        - else
-                          = image_tag("https://via.placeholder.com/150")
-
+                        = image_tag p.image, width: 150
                       %figcaption.media-body
                         %h6.title.text-truncate
                           = p.name
