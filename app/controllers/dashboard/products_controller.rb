@@ -1,4 +1,5 @@
 class Dashboard::ProductsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_product, only: %i[destroy update show edit]
 
   def index

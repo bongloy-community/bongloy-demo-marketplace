@@ -1,0 +1,89 @@
+.row
+  %main.col-sm-8
+    .card
+      %table.table.table-hover.shopping-cart-wrap
+        %thead.text-muted
+          %tr
+            %th{:scope => "col"} Product
+            %th{:scope => "col", :width => "420"} Description
+            %th.text-right{:scope => "col", :width => "100"} Price
+        %tbody
+          %tr
+            %td
+              %figure.media
+                .img-wrap
+                  - if @product.cover_product.attached?
+                    = image_tag(@product.cover_product, :class => "img-thumbnail img-sm")
+                  - else
+                    = image_tag("https://via.placeholder.com/163", :class => "img-thumbnail img-sm")
+                %figcaption.media-body
+                  %h6.title.text-truncate
+                    = @product.name
+            %td
+              .description-wrap
+                = @product.description
+            %td.text-right
+              .price-wrap
+                %var.price $ #{@product.price}
+  %aside.col-sm-4
+    %h4 Payment information
+    %figure.itemside.mb-3
+      .row
+        .col-md-12
+          .alert.alert-danger.d-none{ role: "alert", data: { name: "errorMessages"} }
+          %form#payment-form{:action => product_charges_path, :method => "post"}
+            .form-row
+              %label{:for => "card-element"}
+                Credit or debit card
+              #card-element
+                / A Stripe Element will be inserted here.
+              / Used to display form errors.
+              #card-errors{:role => "alert"}
+            %button Submit Payment
+          -#= simple_form_for(:new_charge, wrapper: :input_group, url: product_charges_path, :html => {:autocomplete => "on", :data => { name: "paymentForm" }}) do |f|
+            -#= f.input :token, as: :hidden, input_html: { data: { name: "cardToken" } }
+            -#= f.input :card_number, prepend: "<i id='card-brand-icon' class='pf pf-credit-card'></i>".html_safe, hint: "Use a sample card number listed below", as: :tel, placeholder: "Card Number", label: false, input_html: { name: nil, id: nil, data: { name: "cardNumber", target: "card-brand-icon" } }
+            -#.row
+              -#.col
+                -#= f.input :expiry, as: :tel, placeholder: "Expiry", label: false, input_html: { name: nil, id: nil, data: { name: "cardExpiry" } }
+              -#.col
+                -#= f.input :cvc, as: :tel, placeholder: "CVC", label: false, input_html: { name: nil, id: nil, data: { name: "cardCVC" }, maxLength: 3 }
+            -#.row
+              -#.col
+                -#= f.button(:submit, "Buy", class: "btn btn-success float-right")
+        .col-md-3.col-sm-1
+.row
+  .col
+    %p
+      = render 'shared/test_cards'
+:css
+  .StripeElement {
+    box-sizing: border-box;
+
+    height: 40px;
+
+    padding: 10px 12px;
+
+    border: 1px solid transparent;
+    border-radius: 4px;
+    background-color: white;
+
+    box-shadow: 0 1px 3px 0 #e6ebf1;
+    -webkit-transition: box-shadow 150ms ease;
+    transition: box-shadow 150ms ease;
+    width: 500px;
+  }
+
+  .StripeElement--focus {
+    box-shadow: 0 1px 3px 0 #cfd7df;
+  }
+
+  .StripeElement--invalid {
+    border-color: #fa755a;
+  }
+
+  .StripeElement--webkit-autofill {
+    background-color: #fefde5 !important;
+  }
+
+= javascript_include_tag "payment_form"

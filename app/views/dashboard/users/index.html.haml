@@ -14,12 +14,12 @@
             %dd
               = @user.email
           %dl.dlist-align
-            - if(@user.stripe_account_id == nil)
+            - if @user.stripe_account_id.empty?
               %dt
                 %a.btn.btn-success.light-blue{:href => "https://connect.stripe.com/oauth/authorize?response_type=code&client_id=#{ENV['CLIENT_ID']}&scope=read_write"}
                   %span Connect with Stripe
             - else
-              %dt Stripe Account Id:
+              %dt Stripe Account Id ddd:
               %dd
                 = @user.stripe_account_id
 

@@ -30,25 +30,8 @@ RSpec.describe "Products", type: :feature do
     expect(page).to have_field("product[name]", with: "Oppo")
   end
 
-  #it "can remove product cover", js: true do
-    #visit edit_product_path(product)
-
-    #if product.cover_product.attached?
-      #click_link  href: delete_attachment_product_path(product)
-      #page.driver.browser.switch_to.alert.accept
-      #binding.pry
-      #expect(false).to eq(product.cover_product.attached?)
-    #else
-      #within("#cover_product") do
-        #expect(page).to have_content 'https://via.placeholder.com/150'
-      #end
-    #end
-
-  #end
-
   it "edit products" do
     visit edit_dashboard_product_path(product)
-
     fill_in "product[name]", with: "new Oppo"
     fill_in "product[description]", with: "new smart phone comming"
     fill_in "product[price]", with: "500"

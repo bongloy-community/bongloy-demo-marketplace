@@ -8,4 +8,8 @@ class Product < ApplicationRecord
   def cover_product_presence
     errors.add(:cover_product, "can't be blank") unless cover_product.attached?
   end
+
+  def price_in_cents
+    self.price * 100
+  end
 end

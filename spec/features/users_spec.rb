@@ -20,8 +20,8 @@ RSpec.describe "Users", type: :feature do
 
     visit user_session_path
 
-    fill_in "user[email]", with: "phanna@bongloy.com"
-    fill_in "user[password]", with: "12345678"
+    fill_in "user[email]", with: user.email
+    fill_in "user[password]", with: user.password
     click_on "Log in"
 
     expect(page).to have_current_path(root_path)
@@ -33,13 +33,33 @@ RSpec.describe "Users", type: :feature do
     expect(page).to have_link("Register", href: new_user_registration_path)
   end
 
+  context "when user already connected to stripe" do
+    it "display stripe account id" do
+      user = create(:user, email: "phanna@bongloy.com", password: "12345678", stripe_account_id: "acc_12345678")
+      sign_in(user)
+      visit users_path(user)
+
+      expect(page).to have_content("acc_12345678")
+    end
+  end
+
+  context "when user haven't connected to stripe yet" do
+    it "display stripe account id" do
+      user = create(:user, email: "phanna@bongloy.com", password: "12345678")
+      sign_in(user)
+      visit users_path(user)
+
+      expect(page).to have_content("Connect with Stripe")
+    end
+  end
+
   it "can see only their own product" do
     user = create(:user)
     sign_in(user)
     product = create(:product, :with_cover_product, user_id: user.id, name: "Hauwei")
     visit dashboard_products_path
 
-    expect(page).to have_content("Hauwei")
+    expect(page).to have_content(product.name)
   end
 
   it "can link to create new product" do
@@ -47,9 +67,9 @@ RSpec.describe "Users", type: :feature do
     visit dashboard_products_path
     click_on "New"
 
-    expect(current_path).to eq(new_dashboard_product_path)
+    expect(page).to have_current_path(new_dashboard_product_path)
   end
-  
+
   it "cannot see other seller product" do
     user = create(:user)
     other_user = create(:user, email: "other@example.com", shop_name: "other")
@@ -58,7 +78,7 @@ RSpec.describe "Users", type: :feature do
     product = create(:product, :with_cover_product, user_id: other_user.id, name: "Hauwei")
     visit dashboard_products_path
 
-    expect(page).not_to have_content("Hauwei")
+    expect(page).not_to have_content(product.name)
   end
 
   it "user visit setting" do
