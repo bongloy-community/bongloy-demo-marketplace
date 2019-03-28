@@ -1,4 +1,11 @@
 class UsersController < ApplicationController
+  def index
+    stripe_connect if params[:code]
+    @user = User.find(current_user.id).decorate
+  end
+
+  private
+
   def stripe_connect
     code = params[:code]
 
@@ -17,10 +24,5 @@ class UsersController < ApplicationController
       @user.save
       "Successfully connected with Stripe!"
     end
-  end
-
-  def index
-    stripe_connect if params[:code]
-    @user = User.find(current_user.id).decorate
   end
 end
