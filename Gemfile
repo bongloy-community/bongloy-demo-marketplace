@@ -51,6 +51,7 @@ group :test do
   gem "factory_bot_rails"
   gem "launchy"
   gem "selenium-webdriver"
+  gem "webmock"
 end
 
 gem "tzinfo-data", platforms: %i[mingw mswin x64_mingw jruby]

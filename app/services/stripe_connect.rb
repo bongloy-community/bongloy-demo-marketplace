@@ -1,17 +1,8 @@
-class UsersController < ApplicationController
-  before_action :authenticate_user!
-
-  def index
-    stripe_connect if params[:code]
-    @user = User.find(current_user.id).decorate
-  end
-
-  private
-
-  def stripe_connect
+class StripeConnect
+  def connect(code)
     parameters = {
       client_secret: ENV.fetch("SECRET_KEY"),
-      code: params[:code],
+      code: code,
       grant_type: "authorization_code"
     }
 

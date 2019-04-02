@@ -1,61 +1,60 @@
 .row
-  %main.col-sm-8
+  %main.col-sm-6.col-md-6.offset-md-1
     .card
-      %table.table.table-hover.shopping-cart-wrap
-        %thead.text-muted
-          %tr
-            %th{:scope => "col"} Product
-            %th{:scope => "col", :width => "420"} Description
-            %th.text-right{:scope => "col", :width => "100"} Price
-        %tbody
-          %tr
-            %td
-              %figure.media
-                .img-wrap
-                  - if @product.cover_product.attached?
-                    = image_tag(@product.cover_product, :class => "img-thumbnail img-sm")
-                  - else
-                    = image_tag("https://via.placeholder.com/163", :class => "img-thumbnail img-sm")
-                %figcaption.media-body
-                  %h6.title.text-truncate
-                    = @product.name
-            %td
-              .description-wrap
-                = @product.description
-            %td.text-right
-              .price-wrap
-                %var.price $ #{@product.price}
-  %aside.col-sm-4
+      .order
+        %ul.order-list
+          %li
+            - if @product.cover_product.attached?
+              = image_tag(@product.cover_product, :class => "img-thumbnail img-sm")
+            - else
+              = image_tag("https://via.placeholder.com/163", :class => "img-thumbnail img-sm")
+            %h4= @product.name
+            %p= @product.description
+        %h5.total Price
+        %h2 $ #{@product.price}
+
+      -# %table.table.table-hover.shopping-cart-wrap
+      -#   %thead.text-muted
+      -#     %tr
+      -#       %th{:scope => "col"} Product
+      -#       %th{:scope => "col", :width => "420"} Description
+      -#       %th.text-right{:scope => "col", :width => "100"} Price
+      -#   %tbody
+      -#     %tr
+      -#       %td
+      -#         %figure.media
+      -#           .img-wrap
+      -#             - if @product.cover_product.attached?
+      -#               = image_tag(@product.cover_product, :class => "img-thumbnail img-sm")
+      -#             - else
+      -#               = image_tag("https://via.placeholder.com/163", :class => "img-thumbnail img-sm")
+      -#           %figcaption.media-body
+      -#             %h6.title.text-truncate
+      -#               = @product.name
+      -#       %td
+      -#         .description-wrap
+      -#           = @product.description
+      -#       %td.text-right
+      -#         .price-wrap
+      -#           %var.price $ #{@product.price}
+  %div.col-sm-4.col-md-4
     %h4 Payment information
-    %figure.itemside.mb-3
+    %figure.mb-3
       .row
         .col-md-12
-          .alert.alert-danger.d-none{ role: "alert", data: { name: "errorMessages"} }
-          %form#payment-form{:action => product_charges_path, :method => "post"}
-            .form-row
-              %label{:for => "card-element"}
-                Credit or debit card
-              #card-element
-                / A Stripe Element will be inserted here.
-              / Used to display form errors.
-              #card-errors{:role => "alert"}
-            %button Submit Payment
-          -#= simple_form_for(:new_charge, wrapper: :input_group, url: product_charges_path, :html => {:autocomplete => "on", :data => { name: "paymentForm" }}) do |f|
-            -#= f.input :token, as: :hidden, input_html: { data: { name: "cardToken" } }
-            -#= f.input :card_number, prepend: "<i id='card-brand-icon' class='pf pf-credit-card'></i>".html_safe, hint: "Use a sample card number listed below", as: :tel, placeholder: "Card Number", label: false, input_html: { name: nil, id: nil, data: { name: "cardNumber", target: "card-brand-icon" } }
-            -#.row
-              -#.col
-                -#= f.input :expiry, as: :tel, placeholder: "Expiry", label: false, input_html: { name: nil, id: nil, data: { name: "cardExpiry" } }
-              -#.col
-                -#= f.input :cvc, as: :tel, placeholder: "CVC", label: false, input_html: { name: nil, id: nil, data: { name: "cardCVC" }, maxLength: 3 }
-            -#.row
-              -#.col
-                -#= f.button(:submit, "Buy", class: "btn btn-success float-right")
+          %div
+            .alert.alert-danger.d-none{ role: "alert", data: { name: "errorMessages"} }
+            = simple_form_for(:new_charge, wrapper: :input_group, url: product_charges_path, :html => {:autocomplete => "on", :data => { name: "paymentForm" }}) do |f|
+              = f.input :token, as: :hidden, input_html: { data: { name: "cardToken" } }
+              %div.mt-3{id: "card-number"}
+              .row
+                .col.mt-3
+                  %div{id: "card-expiry"}
+                .col.mt-3
+                  %div{id: "card-cvc"}
+                .col.mt-3
+                  = f.button(:submit, "Pay", class: "btn btn-success float-right")
         .col-md-3.col-sm-1
-.row
-  .col
-    %p
-      = render 'shared/test_cards'
 :css
   .StripeElement {
     box-sizing: border-box;
@@ -64,14 +63,13 @@
 
     padding: 10px 12px;
 
-    border: 1px solid transparent;
+    border: 1px solid rgba(0, 0, 0, 0.125);
     border-radius: 4px;
     background-color: white;
 
     box-shadow: 0 1px 3px 0 #e6ebf1;
     -webkit-transition: box-shadow 150ms ease;
     transition: box-shadow 150ms ease;
-    width: 500px;
   }
 
   .StripeElement--focus {
@@ -84,6 +82,71 @@
 
   .StripeElement--webkit-autofill {
     background-color: #fefde5 !important;
+  }
+  .order {
+    height: 300px;
+    padding: 0 30px;
+    float: left;
+    z-index: 1;
+
+    -webkit-box-shadow: 0 15px 24px rgba(37,44,65,0.16);
+       -moz-box-shadow: 0 15px 24px rgba(37,44,65,0.16);
+            box-shadow: 0 15px 24px rgba(37,44,65,0.16);
+  }
+
+  ul.order-list {
+    width: 100%;
+    height: 150px;
+    list-style: none;
+    overflow-y: scroll;
+    padding-right: 12px;
+    margin-top: 10px;
+  }
+
+  ul.order-list li {
+    margin-left: -40px;
+    overflow: hidden;
+    border-bottom: 1px solid #e9ebf2;
+  }
+
+  ul.order-list li > img {
+    width: 140px;
+    height:140px;
+    float: left;
+  }
+
+  ul.order-list li > h4 {
+    margin-top: 16px;
+    line-height: 1;
+    letter-spacing: 1px;
+    text-align: right;
+
+    -webkit-transition: all 0.3s;
+       -moz-transition: all 0.3s;
+        -ms-transition: all 0.3s;
+         -o-transition: all 0.3s;
+            transition: all 0.3s;
+  }
+  ul.order-list li > p {
+    margin-top: 16px;
+    line-height: 1;
+    letter-spacing: 1px;
+    text-align: right;
+
+    -webkit-transition: all 0.3s;
+       -moz-transition: all 0.3s;
+        -ms-transition: all 0.3s;
+         -o-transition: all 0.3s;
+            transition: all 0.3s;
+  }
+  .order > h2 {
+    font-size: 42px;
+    color: #6d819c;
+    text-align: left;
+  }
+
+  ul.order-list li:hover > h4 {
+    margin-top: 8px;
   }
 
 = javascript_include_tag "payment_form"
