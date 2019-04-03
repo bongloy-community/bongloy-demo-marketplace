@@ -1,3 +1,9 @@
+- flash.each do |key, value|
+  .alert.alert-danger.alert-dismissible.fade.show{:role => "alert"}
+    %strong #{value}
+    %button.close{"aria-label" => "Close", "data-dismiss" => "alert", :type => "button"}
+      %span{"aria-hidden" => "true"} ×
+
 .row
   %main.col-sm-6.col-md-6.offset-md-1
     .card
@@ -12,33 +18,8 @@
             %p= @product.description
         %h5.total Price
         %h2 $ #{@product.price}
-
-      -# %table.table.table-hover.shopping-cart-wrap
-      -#   %thead.text-muted
-      -#     %tr
-      -#       %th{:scope => "col"} Product
-      -#       %th{:scope => "col", :width => "420"} Description
-      -#       %th.text-right{:scope => "col", :width => "100"} Price
-      -#   %tbody
-      -#     %tr
-      -#       %td
-      -#         %figure.media
-      -#           .img-wrap
-      -#             - if @product.cover_product.attached?
-      -#               = image_tag(@product.cover_product, :class => "img-thumbnail img-sm")
-      -#             - else
-      -#               = image_tag("https://via.placeholder.com/163", :class => "img-thumbnail img-sm")
-      -#           %figcaption.media-body
-      -#             %h6.title.text-truncate
-      -#               = @product.name
-      -#       %td
-      -#         .description-wrap
-      -#           = @product.description
-      -#       %td.text-right
-      -#         .price-wrap
-      -#           %var.price $ #{@product.price}
   %div.col-sm-4.col-md-4
-    %h4 Payment information
+    %h4 Payment Information
     %figure.mb-3
       .row
         .col-md-12
@@ -55,98 +36,6 @@
                 .col.mt-3
                   = f.button(:submit, "Pay", class: "btn btn-success float-right")
         .col-md-3.col-sm-1
-:css
-  .StripeElement {
-    box-sizing: border-box;
 
-    height: 40px;
-
-    padding: 10px 12px;
-
-    border: 1px solid rgba(0, 0, 0, 0.125);
-    border-radius: 4px;
-    background-color: white;
-
-    box-shadow: 0 1px 3px 0 #e6ebf1;
-    -webkit-transition: box-shadow 150ms ease;
-    transition: box-shadow 150ms ease;
-  }
-
-  .StripeElement--focus {
-    box-shadow: 0 1px 3px 0 #cfd7df;
-  }
-
-  .StripeElement--invalid {
-    border-color: #fa755a;
-  }
-
-  .StripeElement--webkit-autofill {
-    background-color: #fefde5 !important;
-  }
-  .order {
-    height: 300px;
-    padding: 0 30px;
-    float: left;
-    z-index: 1;
-
-    -webkit-box-shadow: 0 15px 24px rgba(37,44,65,0.16);
-       -moz-box-shadow: 0 15px 24px rgba(37,44,65,0.16);
-            box-shadow: 0 15px 24px rgba(37,44,65,0.16);
-  }
-
-  ul.order-list {
-    width: 100%;
-    height: 150px;
-    list-style: none;
-    overflow-y: scroll;
-    padding-right: 12px;
-    margin-top: 10px;
-  }
-
-  ul.order-list li {
-    margin-left: -40px;
-    overflow: hidden;
-    border-bottom: 1px solid #e9ebf2;
-  }
-
-  ul.order-list li > img {
-    width: 140px;
-    height:140px;
-    float: left;
-  }
-
-  ul.order-list li > h4 {
-    margin-top: 16px;
-    line-height: 1;
-    letter-spacing: 1px;
-    text-align: right;
-
-    -webkit-transition: all 0.3s;
-       -moz-transition: all 0.3s;
-        -ms-transition: all 0.3s;
-         -o-transition: all 0.3s;
-            transition: all 0.3s;
-  }
-  ul.order-list li > p {
-    margin-top: 16px;
-    line-height: 1;
-    letter-spacing: 1px;
-    text-align: right;
-
-    -webkit-transition: all 0.3s;
-       -moz-transition: all 0.3s;
-        -ms-transition: all 0.3s;
-         -o-transition: all 0.3s;
-            transition: all 0.3s;
-  }
-  .order > h2 {
-    font-size: 42px;
-    color: #6d819c;
-    text-align: left;
-  }
-
-  ul.order-list li:hover > h4 {
-    margin-top: 8px;
-  }
-
+= stylesheet_link_tag "payment_form"
 = javascript_include_tag "payment_form"
