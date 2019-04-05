@@ -1,10 +1,20 @@
 require 'rails_helper'
+require 'fake_stripe'
 
 RSpec.describe UsersController, type: :controller do
-  WebMock.allow_net_connect!
+  # WebMock.allow_net_connect!
+  before(:each) do
+    FakeStripe.stub_stripe
+  end
+
+  after(:each) do
+    WebMock.reset!
+    Stripe.api_key = Rails.application.secrets.stripe_secret_key
+  end
+
   let!(:stripe_response) { [ "stripe_user_id" => "acct_12345678" ] }
 
-  it "connect to stripe" do
+  it "connect to stripe", :vcr do
     user = create(:user)
     sign_in user
     get :index, params: { code: "12345678" }
@@ -17,6 +27,6 @@ RSpec.describe UsersController, type: :controller do
     user.save!
 
     expect(user.stripe_account_id).to eq("acct_12345678")
-    expect(response.body).to eq("Successfully")
+    expect(response).to redirect_to(users_path) 
   end
 end

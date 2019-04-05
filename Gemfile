@@ -51,6 +51,8 @@ group :test do
   gem "factory_bot_rails"
   gem "launchy"
   gem "selenium-webdriver"
+  gem "vcr"
+  gem "fake_stripe"
   gem "webmock"
 end
 

@@ -11,7 +11,6 @@ class Purchases
   def run
     Order.transaction do
       create_order
-      create_line_item
       charge
       @success = order.succeeded?
     end
@@ -19,6 +18,7 @@ class Purchases
 
   def create_order
     self.order = Order.create!(order_attributes)
+    order.create_line_item( { order_id: 1, product_id: @product.id, quantity: 1, price: @product.price })
   end
 
   def create_line_item
