@@ -6,11 +6,4 @@ class User < ApplicationRecord
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-
-  def shop_title
-    self.shop_name.upcase
-  end
-  def shop_name_title
-    self.shop_name.upcase
-  end
 end
