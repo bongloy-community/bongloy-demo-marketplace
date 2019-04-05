@@ -1,26 +1,19 @@
 class ChargesController < ApplicationController
   before_action :set_product, only: %i[new create]
-  skip_before_action :verify_authenticity_token, :only => [:index, :new, :create]
 
   def new; end
 
   def create
-    #customer = Stripe::Customer.create(
-            #:email => params[:stripeEmail],
-            #:source  => params[:stripeToken]
-    #)
-    #
-
-    charge = Stripe::Charge.create(
-      source: params[:stripeToken],
-      amount: @product.price_in_cents,
-      description: @product.description.to_s,
-      currency: "USD",
-      destination: {
-        amount: (@product.price_in_cents * 0.9).to_i,
-        account: @product.user.stripe_account_id
-      }
-    )
+    payment_processing = Purchases.new(user: current_user, token: params[:stripeToken], product: @product)
+    payment_processing.run
+   
+    if payment_processing.success
+      flash[:notice] = "Your payment has been successfully processed"
+      redirect_to root_path()
+    else
+      flash[:error] = "Something went wrong in your payment"
+      redirect_to new_product_charge_path(params[:product_id])
+    end
   end
 
   private

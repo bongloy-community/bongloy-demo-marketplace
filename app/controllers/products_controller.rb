@@ -1,5 +1,4 @@
 class ProductsController < ApplicationController
-
   def index
     @product = Product.all.decorate
   end

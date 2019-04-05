@@ -48,3 +48,9 @@ RSpec/DescribeClass:
 
 RSpec/DescribedClass:
   Enabled: false
+
+AllCops:   
+  Exclude:     
+    - 'db/**/*'     
+    - 'config/**/*'     
+    - 'script/**/*'

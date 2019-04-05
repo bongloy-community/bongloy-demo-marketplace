@@ -1,0 +1,81 @@
+.container-wrapper
+  .transactions
+    %h4 Transaction History
+    .transaction-content.transaction1
+      .status
+      .product-image
+        = image_tag(@product.cover_product)
+      .message
+        %h5= @product.name
+      .message
+        %p= @product.description
+      .price
+        %p $#{@product.price}
+      .times
+        %p 30 minutes ago
+      %button.btn.btn-sm.btn-success Print Invoice
+:css
+  .container-wrapper {
+    height: 400px;
+  }
+
+  .transaction-content {
+    padding: 20px;
+    border-radius: 2px;
+    background-color: #f4f4f4;
+    box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+    display: flex;
+    align-items: center;
+    font-family: avenir;
+    justify-content: space-between;
+    transform: scale(0.9);
+  }
+  .transaction-content .times {
+    width: 10%;
+  }
+  .transaction-content.active {
+    transform: scale(1);
+    background-color: #fff;
+    box-shadow: 0 6px 6px rgba(0, 0, 0, 0.15);
+  }
+  .transaction-content .status {
+    height: 12px;
+    width: 12px;
+    background-color: #5acc35;
+    border-radius: 50%;
+    transition: background-color 0.4s ease-out;
+  }
+  .transaction-content .product-image {
+    width: 10%;
+  }
+  .transaction-content .product-image img {
+    width: 100px;
+    height: 100px;
+    display: inline-block;
+    margin: 14px 10px 0 0;
+    float: right;
+  }
+  .transaction-content .product-image p {
+    display: inline-block;
+  }
+  .transaction-content .message {
+  }
+  .transaction-content .price {
+    width: 10%;
+  }
+
+  .transaction1 {
+    transition-delay: 1s;
+  }
+  .transaction1.active .status {
+    transition-delay: 2s;
+    background-color: #5acc35;
+  }
+
+  .transactions > h4 {
+    font-family: avenir;
+    padding: 10px; 
+    display: flex;
+    justify-content: center;
+  }
+

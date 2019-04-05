@@ -4,6 +4,7 @@ ENV["RAILS_ENV"] ||= "test"
 require File.expand_path("../config/environment", __dir__)
 abort("The Rails environment is running in production mode!") if Rails.env.production?
 require "rspec/rails"
+require 'webmock/rspec'
 
 Dir[Rails.root.join("spec", "support", "**", "*.rb")].each { |f| require f }
 
@@ -15,7 +16,6 @@ rescue ActiveRecord::PendingMigrationError => e
 end
 
 RSpec.configure do |config|
-
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
   config.include Devise::Test::IntegrationHelpers
   config.use_transactional_fixtures = true
@@ -31,4 +31,5 @@ RSpec.configure do |config|
   end
 
   Capybara.javascript_driver = :selenium_chrome
+  WebMock.disable_net_connect!
 end

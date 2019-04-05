@@ -11,7 +11,12 @@ Rails.application.routes.draw do
         delete :delete_attachment
       end
     end
+    resources :users, only: :index do
+      resources :transaction, only: %i[index]
+    end
   end
 
-  resources :users, only: :index
+  resources :users, only: :index do
+    resources :transaction, only: %i[index]
+  end
 end
