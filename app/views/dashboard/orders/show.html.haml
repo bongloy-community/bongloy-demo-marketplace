@@ -1,0 +1,32 @@
+%h4 Order Information
+%hr
+.row
+  .col-12.col-md-4
+    %p
+      %span.mr-2
+        Order Date:
+      %span.border-bottom.text-muted
+        %i
+          = @order.created_at
+  .col-12.col-md-4
+    %p
+      %span.mr-2
+        Card scheme:
+      %span.border-bottom.text-muted
+        %i
+          = @order.payment.source.brand
+
+  .col-12.col-md-4
+    %p
+      %span.mr-2
+        Last 4:
+      %span.border-bottom.text-muted
+        %i
+          = @order.payment.source.last4
+  .col-12.col-md-4
+    %p
+      %span.mr-2
+        Product:
+      %span.border-bottom.text-muted
+        %i
+          = @order.product.first.name

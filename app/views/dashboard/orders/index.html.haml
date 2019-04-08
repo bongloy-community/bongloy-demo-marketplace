@@ -7,17 +7,27 @@
           %table.table.table-hover.shopping-cart-wrap
             %thead.text-muted
               %tr
-                %th{:scope => "col"} Charge Id
+                %th{:scope => "col"} Order Id
+                %th{:scope => "col"} Product
+                %th{:scope => "col"} Charge
                 %th{:scope => "col", :width => "120"} Total
                 %th{:scope => "col"} Status
+                %th{:scope => "col"} Created At
             %tbody
               - @orders.each do |order|
                 %tr
+                  %td
+                    = order.id
+                  %td
+                    = order.product.first.name
                   %td
                     .description-wrap
                       = order.charge_id
                   %td
                     .price-wrap
-                      %var.price $ #{order.total}
+                      %var.price $
+                      = order.amount
                   %td
                     = order.status
+                  %td
+                    = order.created_at

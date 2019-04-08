@@ -4,9 +4,9 @@ class ChargesController < ApplicationController
   def new; end
 
   def create
-    payment_processing = Purchases.new(user: current_user, token: params[:stripeToken], product: @product)
+    payment_processing = Purchases.new(user: @product.user, token: params[:stripeToken], product: @product)
     payment_processing.run
-   
+
     if payment_processing.success
       flash[:notice] = "Your payment has been successfully processed"
       redirect_to root_path()

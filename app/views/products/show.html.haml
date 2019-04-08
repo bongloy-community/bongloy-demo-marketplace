@@ -18,5 +18,5 @@
           %dd
             %p= @product.description
         %hr/
-        %a.btn.btn-outline-primary{:href => "#"} Buy
+        = link_to "Buy", new_product_charge_path(@product.id), :class => "btn btn-outline-primary"
 

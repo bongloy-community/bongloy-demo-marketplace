@@ -88,7 +88,7 @@ RSpec.describe "Users", type: :feature do
     expect(page).to have_content("phanna@bongloy.com")
     expect(page).to have_content("Mobile Shop")
   end
-
+ 
   def user_signin
     user = create(:user)
     sign_in(user)

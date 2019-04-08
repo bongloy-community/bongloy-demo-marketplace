@@ -5,6 +5,15 @@ FactoryBot.define do
     password { "12345678" }
   end
 
+  factory :order do
+    charge_id { "ch_12345" }
+    status { "succeeded" }
+  end
+
+  factory :line_item do
+    quantity { "1" }
+  end
+
   factory :product do
     name { "OnePlus" }
     description { "smart phone" }

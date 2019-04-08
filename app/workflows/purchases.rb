@@ -18,11 +18,7 @@ class Purchases
 
   def create_order
     self.order = Order.create!(order_attributes)
-    order.create_line_item( { order_id: 1, product_id: @product.id, quantity: 1, price: @product.price })
-  end
-
-  def create_line_item
-    order.create_line_item(line_item_attributes)
+    order.create_line_item( { order_id: order.id, product_id: @product.id, quantity: 1, price: @product.price })
   end
 
   def order_attributes
@@ -30,11 +26,7 @@ class Purchases
   end
 
   def charge
-    charge = StripeCharge.charge(token: @token, order: @order)
+    charge = Charge.create(token: @token, order: @order)
     order.update!(charge_id: charge.id, payment_details: charge.to_json, status: charge.status)
-  end
-
-  def line_item_attributes
-    { order_id: 1, product_id: @product.id, quantity: 1, price: @product.price }
   end
 end

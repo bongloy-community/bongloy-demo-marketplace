@@ -6,14 +6,9 @@ RSpec.describe "Purchases", type: :feature do
 
   let!(:user) { create(:user) }
   let!(:product) { create(:product, :with_cover_product, user_id: user.id, name: "Oppo") }
-  
+
   before(:each) do
     FakeStripe.stub_stripe
-  end
-
-  after(:each) do
-    WebMock.reset!
-    Stripe.api_key = Rails.application.secrets.stripe_secret_key
   end
 
   it "can purchase a product", :js do
@@ -41,7 +36,7 @@ RSpec.describe "Purchases", type: :feature do
       end
     end
 
-    within_frame cvc_iframe do   
+    within_frame cvc_iframe do
       cvc.chars.each do |piece|
         find_field('cvc').send_keys(piece)
       end
