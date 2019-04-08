@@ -9,21 +9,9 @@ RSpec.describe "Purchases", :vcr, :aggregate_failures do
   before(:each) do
     FakeStripe.stub_stripe
   end
-
-  after(:each) do
-    WebMock.reset!
-    Stripe.api_key = Rails.application.secrets.stripe_secret_key
-  end
   
   describe "create payment" do
-    let(:token) { Stripe::Token.create(
-      card: {
-        number: "4242424242424242",
-        exp_month: 12,
-        exp_year: Time.zone.now.year + 1,
-        cvc: "123"
-      })
-    }
+    let(:token) { Stripe::Token.create }
 
     before(:example) do
       payment_processing.run
