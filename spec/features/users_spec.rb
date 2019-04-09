@@ -12,7 +12,7 @@ RSpec.describe "Users", type: :feature do
 
     expect(page).to have_current_path(root_path)
     expect(page).to have_link("Store", href: dashboard_products_path)
-    expect(page).to have_link("My account", href: users_path)
+    expect(page).to have_link("My account", href: dashboard_users_path)
   end
 
   it "visitor login to the app" do
@@ -37,7 +37,7 @@ RSpec.describe "Users", type: :feature do
     it "display stripe account id" do
       user = create(:user, email: "phanna@bongloy.com", password: "12345678", stripe_account_id: "acc_12345678")
       sign_in(user)
-      visit users_path(user)
+      visit dashboard_users_path(user)
 
       expect(page).to have_content("acc_12345678")
     end
@@ -47,7 +47,7 @@ RSpec.describe "Users", type: :feature do
     it "display stripe account id" do
       user = create(:user, email: "phanna@bongloy.com", password: "12345678")
       sign_in(user)
-      visit users_path(user)
+      visit dashboard_users_path(user)
 
       expect(page).to have_content("Connect with Stripe")
     end
@@ -83,7 +83,7 @@ RSpec.describe "Users", type: :feature do
 
   it "user visit setting" do
     user_signin
-    visit users_path
+    visit dashboard_users_path
 
     expect(page).to have_content("phanna@bongloy.com")
     expect(page).to have_content("Mobile Shop")

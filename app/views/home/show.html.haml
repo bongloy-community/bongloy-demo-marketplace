@@ -11,8 +11,7 @@
         .mb-3
           %var.price.h3.text-success
             %span.currency US $
-            %span.num
-              = @product.price
+            %span.num= number_to_currency(@product.price)
         %dl
           %dt Description
           %dd

@@ -4,6 +4,7 @@ RSpec.describe Order, type: :model do
   describe "associations" do
     it { is_expected.to have_many(:line_items) }
     it { is_expected.to belong_to(:user) }
+    it { is_expected.to have_many(:product).through(:line_items) }
   end
 
   describe "enum type" do

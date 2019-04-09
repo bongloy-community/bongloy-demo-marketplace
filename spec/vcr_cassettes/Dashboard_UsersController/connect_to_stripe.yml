@@ -1,0 +1,63 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://connect.stripe.com/oauth/token?client_secret=sk_test_wt9DrL4OTAM0BAxIkpAyfGB2&code=12345678&grant_type=authorization_code
+    body:
+      encoding: UTF-8
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 400
+      message: Bad Request
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Tue, 09 Apr 2019 04:14:06 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Content-Length:
+      - '100'
+      Connection:
+      - keep-alive
+      Set-Cookie:
+      - __stripe_orig_props=%7B%22referrer%22%3A%22%22%2C%22landing%22%3A%22https%3A%2F%2Fconnect.stripe.com%2Foauth%2Ftoken%3Fclient_secret%3Dsk_test_wt9DrL4OTAM0BAxIkpAyfGB2%5Cu0026code%3D12345678%5Cu0026grant_type%3Dauthorization_code%22%7D;
+        domain=stripe.com; path=/; expires=Wed, 08 Apr 2020 04:14:06 -0000; secure;
+        HttpOnly
+      - cid=d45aa44b-7b9b-439d-a162-046fdf7f1e27; domain=stripe.com; path=/; secure
+      - lsession=; domain=stripe.com; path=/; max-age=0; expires=Thu, 01 Jan 1970
+        00:00:00 -0000; secure
+      - machine_identifier=Q6MPB%2B6YZ8VAXtDjb985Gxlwvk7VGZIwtmT%2BV0QRWaulhETetvAvLwVw9Db14f9Acnw%3D;
+        domain=stripe.com; path=/; expires=Mon, 04 Apr 2039 04:14:06 -0000; secure;
+        HttpOnly
+      - private_machine_identifier=Gt0F623bImqca8890HeLMg1y7bcTFBcdLN6Apkg4gUC5uSpUtn7W9aenNwwmXxu1jUE%3D;
+        domain=stripe.com; path=/; expires=Wed, 08 Apr 2020 04:14:06 -0000; secure;
+        HttpOnly
+      - session=; domain=stripe.com; path=/; max-age=0; expires=Thu, 01 Jan 1970 00:00:00
+        -0000; secure
+      - stripe.csrf=n0c3I3CS7NWp4vj5jopxLkZbeVeZ5hTTp6cOEx-ivS2424m9LzCKmGPmseeTKqmOqBZmEYwu3uSuPpYHJVMTeg%3D%3D;
+        domain=stripe.com; path=/; secure; HttpOnly
+      X-Content-Type-Options:
+      - nosniff
+      X-Ua-Compatible:
+      - IE=Edge,chrome=1
+      Request-Id:
+      - 1554783246-mreq_MyTkTqjEHaaoNk
+    body:
+      encoding: UTF-8
+      string: |-
+        {
+          "error": "invalid_grant",
+          "error_description": "Authorization code does not exist: 12345678"
+        }
+    http_version: 
+  recorded_at: Tue, 09 Apr 2019 04:14:07 GMT
+recorded_with: VCR 4.0.0

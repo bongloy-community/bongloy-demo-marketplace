@@ -26,6 +26,8 @@
                     - if current_user.stripe_account_id
                       %li
                         = link_to("Store", dashboard_products_path, :class => "dropdown-item")
+                      %li
+                        = link_to("Order", dashboard_orders_path, :class => "dropdown-item")
                     %li
                       = link_to("Log Out", destroy_user_session_path, :class => "dropdown-item")
               - else

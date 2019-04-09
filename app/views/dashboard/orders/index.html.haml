@@ -3,7 +3,7 @@
     #code_cart
       .card
         .card-body
-          %h4.card-title.mb-4.mt-1 Transaction History
+          %h4.card-title.mb-4.mt-1 Order History
           %table.table.table-hover.shopping-cart-wrap
             %thead.text-muted
               %tr
@@ -17,7 +17,7 @@
               - @orders.each do |order|
                 %tr
                   %td
-                    = order.id
+                    = link_to order.id, dashboard_order_path(order.id)
                   %td
                     = order.product.first.name
                   %td
@@ -25,8 +25,7 @@
                       = order.charge_id
                   %td
                     .price-wrap
-                      %var.price $
-                      = order.amount
+                      %var.price= number_to_currency(order.amount)
                   %td
                     = order.status
                   %td

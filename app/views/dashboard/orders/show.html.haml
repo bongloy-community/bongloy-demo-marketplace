@@ -30,3 +30,43 @@
       %span.border-bottom.text-muted
         %i
           = @order.product.first.name
+  .col-12.col-md-4
+    %p
+      %span.mr-2
+        Total:
+      %span.border-bottom.text-muted
+        %i $#{@order.product.first.price}
+  .col-12.col-md-4
+    %p
+      %span.mr-2
+        Fee:
+      %span.border-bottom.text-muted
+        %i $#{@order.payment.application_fee_amount / 100 }
+  .col-12.col-md-4
+    %p
+      %span.mr-2
+        Status:
+      %span.border-bottom.text-muted
+        %i
+          = @order.payment.status
+  .col-12.col-md-4
+    %p
+      %span.mr-2
+        Country:
+      %span.border-bottom.text-muted
+        %i
+          = @order.payment.source.country
+  .col-12.col-md-4
+    %p
+      %span.mr-2
+        Currency:
+      %span.border-bottom.text-muted
+        %i
+          = @order.payment.currency
+  .col-12.col-md-4
+    %p
+      %span.mr-2
+        Refund:
+      %span.border-bottom.text-muted
+        %i
+          = @order.payment.amount_refunded

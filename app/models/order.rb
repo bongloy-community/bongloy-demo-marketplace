@@ -10,7 +10,7 @@ class Order < ApplicationRecord
   end
 
   def amount
-    self.total / 100
+    total / 100
   end
 
   def payment

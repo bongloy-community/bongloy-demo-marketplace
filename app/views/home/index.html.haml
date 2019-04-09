@@ -17,4 +17,4 @@
                 .action-wrap
                   = link_to "Buy", new_product_charge_path(p.id), :class => "btn btn-primary btn-sm float-right"
                   .price-wrap.h5
-                    %span.price-new $#{p.price}
+                    %span.price-new= number_to_currency(p.price)

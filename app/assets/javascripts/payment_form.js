@@ -39,8 +39,6 @@ var cardCvcElement = elements.create('cardCvc', {
 });
 cardCvcElement.mount('#card-cvc');
 
-console.log(cardCvcElement, cardNumberElement)
-
 // card.mount('#card-element');
 
 // card.addEventListener('change', function(event) {

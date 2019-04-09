@@ -1,6 +1,7 @@
 class Dashboard::ProductsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_product, only: %i[destroy update show edit]
+  before_action :connect_to_stripe
 
   def index
     @product = current_user.products.decorate
@@ -58,5 +59,11 @@ class Dashboard::ProductsController < ApplicationController
 
   def product_params
     params.require(:product).permit(:name, :price, :description, :cover_product).merge(user_id: current_user.id)
+  end
+
+  def connect_to_stripe
+    unless current_user.stripe_account_id.present?
+      redirect_to dashboard_users_path
+    end
   end
 end
