@@ -4,6 +4,8 @@ class Product < ApplicationRecord
   validates :name, :price, presence: true
   validate :cover_product_presence
 
+  scope :search, ->(name) { where('LOWER(name) LIKE ?', "%#{name.downcase}%") }
+
   def cover_product_presence
     errors.add(:cover_product, "can't be blank") unless cover_product.attached? 
   end

@@ -35,17 +35,17 @@ RSpec.describe "Users", type: :feature do
 
   context "when user already connected to stripe" do
     it "display stripe account id" do
-      user = create(:user, email: "phanna@bongloy.com", password: "12345678", stripe_account_id: "acc_12345678")
+      user = create(:user, email: "phanna@bongloy.com", password: "12345678")
       sign_in(user)
       visit dashboard_users_path(user)
 
-      expect(page).to have_content("acc_12345678")
+      expect(page).to have_content("acct_12345678")
     end
   end
 
   context "when user haven't connected to stripe yet" do
     it "display stripe account id" do
-      user = create(:user, email: "phanna@bongloy.com", password: "12345678")
+      user = create(:user, email: "phanna@bongloy.com", password: "12345678", stripe_account_id: nil)
       sign_in(user)
       visit dashboard_users_path(user)
 

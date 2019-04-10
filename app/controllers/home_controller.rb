@@ -1,6 +1,10 @@
 class HomeController < ApplicationController
   def index
-    @products = Product.all.decorate
+    if params[:search]
+      @products = Product.search(params[:search]).decorate
+    else
+      @products = Product.all.decorate
+    end
   end
 
   def show

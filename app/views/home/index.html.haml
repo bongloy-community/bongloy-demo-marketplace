@@ -1,4 +1,4 @@
-.main-content
+%main-content
   %section#products
     #code_prod2
       - flash.each do |key, value|
@@ -7,14 +7,19 @@
           %button.close{"aria-label" => "Close", "data-dismiss" => "alert", :type => "button"}
             %span{"aria-hidden" => "true"} ×
       .row
-        - @products.each do |p|
-          .col-md-3
-            %figure.card.card-product
-              .img-wrap
-                = link_to image_tag(p.image), product_path(p.id)
-              %figcaption.info-wrap
-                = link_to p.name, product_path(p.id)
-                .action-wrap
-                  = link_to "Buy", new_product_charge_path(p.id), :class => "btn btn-primary btn-sm float-right"
-                  .price-wrap.h5
-                    %span.price-new= number_to_currency(p.price)
+        - if @products.present?
+          - @products.each do |p|
+            .col-md-3
+              %figure.card.card-product
+                .img-wrap
+                  = link_to image_tag(p.image), product_path(p.id)
+                %figcaption.info-wrap
+                  = link_to p.name, product_path(p.id)
+                  .action-wrap
+                    = link_to "Buy", new_product_charge_path(p.id), :class => "btn btn-primary btn-sm float-right"
+                    .price-wrap.h5
+                      %span.price-new= number_to_currency(p.price)
+        - else
+          .col-md-12.text-center
+            .alert.alert-info.alert-dismissible.fade.show{:role => "alert"}
+              %strong No search results found

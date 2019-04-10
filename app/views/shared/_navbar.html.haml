@@ -7,9 +7,9 @@
             .brand-wrap
               = link_to image_tag('logos/logo.png', width:'205', height:'50'), root_path
           .col-lg-13-24.col-sm-12.order-3.order-lg-2
-            %form{:action => "#"}
+            %form{url: root_path, method: :get}
               .input-group.w-100
-                %input.form-control{:placeholder => "Search", :style => "width:60%;", :type => "text"}/
+                %input.form-control{:placeholder => "Search", name: "search", :style => "width:60%;", :type => "text"}/
                 .input-group-append
                   %button.btn.btn-primary{:type => "submit"}
                     %i.fa.fa-search

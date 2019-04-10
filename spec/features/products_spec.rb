@@ -1,7 +1,7 @@
 require "rails_helper"
 
 RSpec.describe "Products", type: :feature do
-  let!(:user) { create(:user) }
+  let!(:user) { create(:user, stripe_account_id: "acct_12345678") }
   let!(:product) { create(:product, :with_cover_product, user_id: user.id, name: "Oppo") }
 
   before do

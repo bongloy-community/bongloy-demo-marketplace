@@ -50,4 +50,33 @@ RSpec.describe "Visitors", type: :feature do
     expect(page).to have_current_path(new_product_charge_path(product))
     expect(page).to have_content("Payment Information")
   end
+
+  describe "Search" do
+    before do
+      user = create(:user, shop_name: "Samsung Store", email: "service@samsung.com")
+      create(:product, :with_cover_product, user_id: user.id, name: "samsung 10", price: 600)
+      create(:product, :with_cover_product, user_id: user.id, name: "samsung 10+", price: 800)
+    end
+
+    it "match product" do
+
+      visit root_path
+      fill_in :search, with: "samsung"
+
+      find(:css, 'i.fa.fa-search').click
+
+      expect(page).to have_content("samsung 10")
+      expect(page).to have_content("$600")
+      expect(page).to have_content("$800")
+    end
+
+    it "doesn't match product", js: true do
+      visit root_path
+      fill_in :search, with: "hauwei"
+
+      find(:css, 'i.fa.fa-search').click
+
+      expect(page).to have_content("No search results found")
+    end
+  end
 end

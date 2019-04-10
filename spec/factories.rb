@@ -3,6 +3,7 @@ FactoryBot.define do
     email { "phanna@bongloy.com" }
     shop_name { "Mobile Shop" }
     password { "12345678" }
+    stripe_account_id { "acct_12345678" }
   end
 
   factory :order do
