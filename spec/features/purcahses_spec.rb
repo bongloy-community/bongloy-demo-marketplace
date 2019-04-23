@@ -14,8 +14,12 @@ RSpec.describe "Purchases", type: :feature do
   it "can purchase a product", :js do
     sign_in(user)
     visit new_product_charge_path(product)
+    
+    expect(page).to have_content("Payment Information")
 
     fill_stripe_element("4242 4242 4242 4242", "12/20", "123")
+  
+    # assert flash message
     expect(page).to have_current_path(root_path)
   end
 

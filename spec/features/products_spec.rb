@@ -9,6 +9,7 @@ RSpec.describe "Products", type: :feature do
   end
 
   it "list the product" do
+
     visit dashboard_products_path
     expect(page).to have_content("Oppo")
   end

@@ -7,34 +7,37 @@ RSpec.describe "Visitors", type: :feature do
   it "see the link menu" do
     visit root_path
 
-    expect(page).to have_content("Sign In")
-    expect(page).to have_content("Register")
-    expect(page).to have_link href: new_user_session_path
-    expect(page).to have_link href: user_session_path
+    expect(page).to have_link  "Sign In", href: new_user_session_path
+    expect(page).to have_link "Register", href: new_user_registration_path
   end
 
-  it "click the register link" do
-    visit root_path
-    click_on("Register")
+  # Remove
+  # assert link is enough
+  # it "click the register link" do
+  #   visit root_path
+  #   click_on("Register")
 
-    expect(page).to have_current_path(new_user_registration_path)
-  end
+  #   expect(page).to have_current_path(new_user_registration_path)
+  # end
 
-  it "click the login link" do
-    visit root_path
-    click_on("Sign In")
+  # # assert link is enough
+  # it "click the login link" do
+  #   visit root_path
+  #   click_on("Sign In")
 
-    expect(page).to have_current_path(new_user_session_path)
-  end
+  #   expect(page).to have_current_path(new_user_session_path)
+  # end
 
   it "display the products by all sellers" do
     visit root_path
 
-    expect(page).to have_content("OnePlus")
+    expect(page).to have_link("OnePlus", href: product_path(product))
     expect(page).to have_content("200")
-    expect(page).to have_content("Buy")
+    # expect(page).to have_link("Buy")
+    expect(page).to have_link("Buy", href: new_product_charge_path(product))
   end
 
+  # move to products_spec
   it "click on title to see detail" do
     visit root_path
     click_on(product.name)
@@ -43,13 +46,12 @@ RSpec.describe "Visitors", type: :feature do
     expect(page).to have_content(product.description)
   end
 
-  it "click on buy button" do
-    visit root_path
-    click_on("Buy")
+#   it "click on buy button" do
+#     visit root_path
+#     click_on("Buy")
 
-    expect(page).to have_current_path(new_product_charge_path(product))
-    expect(page).to have_content("Payment Information")
-  end
+#     expect(page).to have_current_path(new_product_charge_path(product))
+#   end
 
   describe "Search" do
     before do
@@ -63,18 +65,18 @@ RSpec.describe "Visitors", type: :feature do
       visit root_path
       fill_in :search, with: "samsung"
 
-      find(:css, 'i.fa.fa-search').click
+      click_on 'search'
 
-      expect(page).to have_content("samsung 10")
+      expect(page).to have_content("samsung")
       expect(page).to have_content("$600")
       expect(page).to have_content("$800")
     end
 
-    it "doesn't match product", js: true do
+    it "doesn't match product", :js do
       visit root_path
       fill_in :search, with: "hauwei"
 
-      find(:css, 'i.fa.fa-search').click
+      click_on 'search'
 
       expect(page).to have_content("No search results found")
     end
