@@ -12,5 +12,5 @@
           = image_tag(@product.cover_product, width: 100, height: 100, id: "image-preview")
         - else
           = image_tag("https://via.placeholder.com/150")
-  = f.button :submit, "Create", :class => "btn btn-primary"
+  = f.button :submit, "Update", :class => "btn btn-primary"
   = link_to "Cancel", dashboard_products_path, :class => "btn btn-outline-info"

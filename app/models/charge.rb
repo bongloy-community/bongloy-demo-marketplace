@@ -1,4 +1,6 @@
 class Charge
+  PLATE_FORM_FEE_IN_CENTS = 100
+
   attr_accessor :order, :token
 
   def initialize(token:, order:)
@@ -15,7 +17,7 @@ class Charge
       amount: @order.total,
       currency: "usd",
       source: @token,
-      application_fee_amount: 100,
+      application_fee_amount: PLATE_FORM_FEE_IN_CENTS,
       metadata: {
         order: @order.to_json,
         product: @order.product.to_json }

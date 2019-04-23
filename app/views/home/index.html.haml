@@ -1,11 +1,6 @@
 %main-content
   %section#products
     #code_prod2
-      - flash.each do |key, value|
-        .alert.alert-success.alert-dismissible.fade.show{:role => "alert"}
-          %strong #{value}
-          %button.close{"aria-label" => "Close", "data-dismiss" => "alert", :type => "button"}
-            %span{"aria-hidden" => "true"} ×
       .row
         - if @products.present?
           - @products.each do |p|

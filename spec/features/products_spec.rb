@@ -35,7 +35,7 @@ RSpec.describe "Products", type: :feature do
     fill_in "product[name]", with: "new Oppo"
     fill_in "product[description]", with: "new smart phone comming"
     fill_in "product[price]", with: "500"
-    click_on "Create"
+    click_on "Update"
 
     expect(page).to have_current_path(dashboard_products_path)
     expect(page).to have_content("new Oppo")

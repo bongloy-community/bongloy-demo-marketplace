@@ -11,11 +11,11 @@
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
   %body.relative
-    = render "shared/navbar"
+    = render "shared/navbar
     .container
-      - flash.each do |key, value|
-        .alert.alert-success.alert-dismissible.fade.show{:role => "alert"}
-          %strong #{value}
-          %button.close{"aria-label" => "Close", "data-dismiss" => "alert", :type => "button"}
-            %span{"aria-hidden" => "true"} ×
+      -#- flash.each do |key, value|
+        -#.alert.alert-success.alert-dismissible.fade.show{:role => "alert"}
+          -#%strong #{value}
+          -#%button.close{"aria-label" => "Close", "data-dismiss" => "alert", :type => "button"}
+            -#%span{"aria-hidden" => "true"} ×
       = yield
