@@ -22,7 +22,7 @@
                       %i.fa.fa-user
                   .dropdown-menu.dropdown-menu-right{:style => "position: absolute; transform: translate3d(-120px, 44px, 0px); top: 0px; left: 0px; will-change: transform;", "x-placement" => "bottom-end"}
                     %li
-                      = link_to("My account", dashboard_users_path, :class => "dropdown-item")
+                      = link_to("My account", dashboard_user_path(current_user.id), :class => "dropdown-item")
                     - if current_user.stripe_account_id
                       %li
                         = link_to("Store", dashboard_products_path, :class => "dropdown-item")

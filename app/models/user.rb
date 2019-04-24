@@ -6,4 +6,14 @@ class User < ApplicationRecord
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
+
+  def authorize(stripe_user_id)
+    self.stripe_account_id = stripe_user_id
+    self.save!
+  end
+
+  def deauthorize
+    self.stripe_account_id = nil
+    self.save!
+  end
 end

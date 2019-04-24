@@ -1,6 +1,6 @@
 var publishableKey = document.head.querySelector("meta[name=bongloy-publishable-key]").content;
 // var stripe = Stripe('pk_test_XmdOzADDVEtGSyVop5l3Ydpz');
-var stripe = Stripe("pk_test_XWyiz6wW6ZhiNxlKB9FN6Sx5")
+var stripe = Stripe("pk_test_XmdOzADDVEtGSyVop5l3Ydpz")
 
 var elements = stripe.elements();
 

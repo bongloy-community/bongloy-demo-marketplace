@@ -3,7 +3,7 @@ class UserDecorator < ApplicationDecorator
 
   def stripe_connect_account
     if object.stripe_account_id.nil? || object.stripe_account_id.empty?
-      h.content_tag :dd, h.link_to("Connect with Stripe", stripe_url, class: "btn btn-success light-blue")
+      h.content_tag :dd, h.link_to("Connect with Stripe", stripe_url, class: "btn btn-success btn-sm light-blue")
     else
       h.content_tag :dd, object.stripe_account_id
     end
