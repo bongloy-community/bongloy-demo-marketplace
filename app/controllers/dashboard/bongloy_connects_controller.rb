@@ -1,21 +1,25 @@
 class Dashboard::BongloyConnectsController < ApplicationController
+  # class Dashboard::BongloyConnectsController < Dashboard::BaseController
   before_action :authenticate_user!
 
   def index
+    # move to create
+    # introduce Workflow
     response = StripeConnect.new(params[:code]).connect
 
     if response.key?("error")
-      redirect_to dashboard_user_path(current_user.id), notice: response["error_description"]
+      flash[:error] = response["error_description"]
     else
       current_user.authorize(response["stripe_user_id"])
-      redirect_to dashboard_user_path(current_user.id), notice: "Connected with stripe successfuly"
+      flash[:success] =  "Connected with stripe successfuly"
     end
+
+    redirect_to dashboard_user_path(current_user.id)
   end
 
   def destroy
-    acct = Stripe::Account.retrieve(current_user.stripe_account_id)
-    acct.deauthorize(ENV.fetch("CLIENT_ID"))
-
+    current_user.deauthorize
     redirect_to dashboard_user_path(current_user), notice: "User has been revoked"
   end
 end
+

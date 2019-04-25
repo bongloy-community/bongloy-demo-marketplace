@@ -13,8 +13,8 @@
   %body.relative
     = render "shared/navbar"
     .container
-      - flash.each do |key, value|
-        .alert.alert-success.alert-dismissible.fade.show{:role => "alert"}
+      - flash.each do |type, value|
+        .alert.alert-dismissible.fade.show{:role => "alert", class: flash_type_class(type)}
           %strong #{value}
           %button.close{"aria-label" => "Close", "data-dismiss" => "alert", :type => "button"}
             %span{"aria-hidden" => "true"} ×

@@ -13,6 +13,8 @@ class User < ApplicationRecord
   end
 
   def deauthorize
+    acct = Stripe::Account.retrieve(self.stripe_account_id)
+    acct.deauthorize(ENV.fetch("CLIENT_ID"))
     self.stripe_account_id = nil
     self.save!
   end

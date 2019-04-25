@@ -12,7 +12,6 @@ RSpec.describe "Authentication", type: :feature do
 
     expect(page).to have_current_path(root_path)
     expect(page).to have_link("Store", href: dashboard_products_path)
-    expect(page).to have_link("My account", href: dashboard_users_path)
   end
 
   it "login to their shop" do

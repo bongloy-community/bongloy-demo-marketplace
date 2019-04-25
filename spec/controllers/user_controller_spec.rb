@@ -14,6 +14,7 @@ RSpec.describe Dashboard::UsersController, type: :controller do
   let!(:stripe_response) { ["stripe_user_id" => "acct_12345678"] }
 
   it "connect to stripe" do
+    pending
     user = create(:user)
     sign_in user
 

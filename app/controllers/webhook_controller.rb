@@ -4,6 +4,5 @@ class WebhookController < ApplicationController
   def deauthorize
     user = User.find_by(stripe_account_id: params[:account])
     user.deauthorize
-
   end
 end
