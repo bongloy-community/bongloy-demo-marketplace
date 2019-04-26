@@ -1,6 +1,4 @@
-class Dashboard::UsersController < ApplicationController
-  before_action :authenticate_user!
-
+class Dashboard::UsersController < Dashboard::BaseController
   def show
     @user = User.find(current_user.id).decorate
   end

@@ -1,5 +1,4 @@
-class Dashboard::ProductsController < ApplicationController
-  before_action :authenticate_user!
+class Dashboard::ProductsController < Dashboard::BaseController
   before_action :set_product, only: %i[destroy update show edit]
   before_action :connect_to_stripe
 
@@ -62,8 +61,6 @@ class Dashboard::ProductsController < ApplicationController
   end
 
   def connect_to_stripe
-    unless current_user.stripe_account_id.present?
-      redirect_to dashboard_users_path
-    end
+    redirect_to dashboard_users_path unless current_user.stripe_account_id.present?
   end
 end

@@ -7,9 +7,10 @@ class Deauthorize
 
   def run
     deauthorize_access
-    @user.stripe_account_id = nil
-    @user.save!
+    @user.update!(stripe_account_id: nil)
   end
+
+  private
 
   def deauthorize_access
     acct = Stripe::Account.retrieve(@user.stripe_account_id)

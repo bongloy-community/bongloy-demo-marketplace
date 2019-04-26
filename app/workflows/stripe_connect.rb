@@ -12,6 +12,6 @@ class StripeConnect
       grant_type: "authorization_code"
     }
 
-    response = HTTParty.post("https://connect.stripe.com/oauth/token", query: parameters)
+    response = HTTParty.post(ENV.fetch("STRIPE_CONNECT_URL"), query: parameters)
   end
 end

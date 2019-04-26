@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe "Users", type: :feature do
   it "show their account setting" do
@@ -31,16 +31,5 @@ RSpec.describe "Users", type: :feature do
 
       expect(page).to have_content("Connect with Stripe")
     end
-  end
-
-  it "can revoke their stripe connect account" do
-    user = create(:user)
-    sign_in user
-
-    visit dashboard_user_path(user)
-
-    stub_request(:delete, dashboard_bongloy_connect_path(user.id)).to_return(body: [ stripe_user_id: "acct_12345678" ])
-
-    expect(page).to have_content("Connect with Stripe")
   end
 end

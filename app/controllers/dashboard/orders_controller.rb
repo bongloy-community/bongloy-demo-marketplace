@@ -1,6 +1,4 @@
-class Dashboard::OrdersController < ApplicationController
-  before_action :authenticate_user!
-
+class Dashboard::OrdersController < Dashboard::BaseController
   def index
     @orders = current_user.orders
   end
