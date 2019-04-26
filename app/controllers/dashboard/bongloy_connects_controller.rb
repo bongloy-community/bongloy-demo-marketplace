@@ -18,7 +18,6 @@ class Dashboard::BongloyConnectsController < ApplicationController
   end
 
   def destroy
-
     Deauthorize.new(current_user).run
     redirect_to dashboard_user_path(current_user), notice: "User has been revoked"
   end

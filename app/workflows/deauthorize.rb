@@ -12,7 +12,6 @@ class Deauthorize
   end
 
   def deauthorize_access
-    binding.pry
     acct = Stripe::Account.retrieve(@user.stripe_account_id)
     acct.deauthorize(ENV.fetch("CLIENT_ID"))
   end
