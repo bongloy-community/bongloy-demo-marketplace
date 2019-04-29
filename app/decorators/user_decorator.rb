@@ -1,4 +1,5 @@
 class UserDecorator < ApplicationDecorator
+  include Rails.application.routes.url_helpers
   delegate_all
 
   def stripe_connect_account

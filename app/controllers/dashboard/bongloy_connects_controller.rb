@@ -6,7 +6,7 @@ class Dashboard::BongloyConnectsController < Dashboard::BaseController
       flash[:error] = result["error_description"]
     else
       current_user.authorize(result["stripe_user_id"])
-      #flash[:success] = "Connected with stripe successfuly"
+      flash[:success] = "Connected with stripe successfuly"
     end
 
     redirect_to dashboard_user_path(current_user.id)
@@ -20,6 +20,6 @@ class Dashboard::BongloyConnectsController < Dashboard::BaseController
   private
   
   def get_stripe_user_data
-    response = StripeConnect.new(params[:code]).connect
+    StripeConnect.new(params[:code]).connect
   end
 end
