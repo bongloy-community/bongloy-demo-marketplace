@@ -4,3 +4,5 @@ Rails.configuration.stripe = {
 }
 
 Stripe.api_key = Rails.configuration.stripe[:secret_key]
+Stripe.api_key = ENV.fetch("SECRET_KEY")
+Stripe.api_base = "https://api-staging.bongloy.com"

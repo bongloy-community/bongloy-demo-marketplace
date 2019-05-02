@@ -5,7 +5,7 @@ class Dashboard::BongloyConnectsController < Dashboard::BaseController
     if result.key?("error")
       flash[:error] = result["error_description"]
     else
-      current_user.authorize(result["stripe_user_id"])
+      current_user.authorize(result["bongloy_account_id"])
       flash[:success] = "Connected with stripe successfuly"
     end
 

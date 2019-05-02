@@ -13,16 +13,31 @@ class Charge
   end
 
   def create
-    Stripe::Charge.create({
+    # binding.pry
+    result = Stripe::Charge.create({
       amount: @order.total,
       currency: "usd",
       source: @token,
-      application_fee_amount: PLATE_FORM_FEE_IN_CENTS,
       metadata: {
         order: @order.to_json,
         product: @order.product.to_json }
       },
-      stripe_account: @order.user.stripe_account_id
+      bongloy_account: @order.user.stripe_account_id
     )
+   # paramters = { 
+   #    amount: @order.total,
+   #    currency: "USD",
+   #    source: @token
+   # }
+  # result = HTTParty.post(
+   #   "https://api-staging.bongloy.com/v1/charges",
+   #   body: paramters,
+   #   headers: {
+   #              "Http-Bongloy-Account" => @order.user.stripe_account_id,
+   #              authorization: "Bearer sk_test_-V19hpX5OzJgKDCAfmw8C9MGNqLKdDuxoxobSiQq3ds"
+   #  }
+   # )
+   binding.pry
   end
 end
+                # "BONGLOY_ACCOUNT" => @order.user.stripe_account_id,

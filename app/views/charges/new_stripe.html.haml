@@ -1,0 +1,44 @@
+- flash.each do |key, value|
+  .alert.alert-danger.alert-dismissible.fade.show{:role => "alert"}
+    %strong #{value}
+    %button.close{"aria-label" => "Close", "data-dismiss" => "alert", :type => "button"}
+      %span{"aria-hidden" => "true"} ×
+
+.row
+  %main.col-sm-6.col-md-6.offset-md-1
+    .card
+      .order
+        %ul.order-list
+          %li
+            - if @product.cover_product.attached?
+              = image_tag(@product.cover_product, :class => "img-thumbnail img-sm")
+            - else
+              = image_tag("https://via.placeholder.com/163", :class => "img-thumbnail img-sm")
+            %h4= @product.name
+            %p= @product.description
+        %h5.total Price
+        %h2 $ #{@product.price}
+  %div.col-sm-4.col-md-4
+    %h4 Payment Information
+    %figure.mb-3
+      .row
+        .col-md-12
+          %div
+            .alert.alert-danger.d-none{ role: "alert", data: { name: "errorMessages"} }
+            = simple_form_for(:new_charge, wrapper: :input_group, url: product_charges_path, :html => {:autocomplete => "on", :data => { name: "paymentForm" }}) do |f|
+              = f.input :token, as: :hidden, input_html: { data: { name: "cardToken" } }
+              %div.mt-3{id: "card-number"}
+              .row
+                .col.mt-3
+                  %div{id: "card-expiry"}
+                .col.mt-3
+                  %div{id: "card-cvc"}
+                .col.mt-3
+                  = f.button(:submit, "Pay", class: "btn btn-success float-right")
+        .col-md-3.col-sm-1
+
+.row.pt-5
+  .col-md-12
+    = render "shared/test_cards"
+= stylesheet_link_tag "payment_form"
+= javascript_include_tag "payment_form"

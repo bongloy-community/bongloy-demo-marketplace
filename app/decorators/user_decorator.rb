@@ -13,6 +13,7 @@ class UserDecorator < ApplicationDecorator
   private
 
   def stripe_url
-    "https://connect.stripe.com/oauth/authorize?response_type=code&client_id=#{ENV['CLIENT_ID']}&scope=read_write"
+    # "https://connect.stripe.com/oauth/authorize?response_type=code&client_id=#{ENV['CLIENT_ID']}&scope=read_write"
+    "https://staging-sandbox.bongloy.com/oauth/authorize?client_id=aSLmbR_PWt9wx1J5cbcrl1mKS1abwR7IrW7EfgoLivI&redirect_uri=https%3A%2F%2Ff5ea27cb.ngrok.io%2Fdashboard%2Fbongloy_connects%2Fnew&response_type=code"
   end
 end
