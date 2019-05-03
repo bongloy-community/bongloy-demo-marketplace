@@ -16,7 +16,8 @@ Rails.application.routes.draw do
 
     resources :orders, only: %i[index show]
     resources :users, only: %i[destroy show]
-    resources :bongloy_connects, only: %i[new destroy]
+    resources :bongloy_connects, only: %i[new]
+    get "bongloy_connects/authorize" => "bongloy_connects#authorize"
   end
 
   post "webhook/deauthorize" => "webhook#deauthorize"

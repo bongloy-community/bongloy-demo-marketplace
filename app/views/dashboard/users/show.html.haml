@@ -14,10 +14,7 @@
             %dd
               = @user.email
           %dl.dlist-align
-            %dt Stripe Account Id:
+            %dt Bongloy Account Id:
             %dd
-              = @user.stripe_connect_account
-
-          - if @user.stripe_account_id.present?
-            = link_to("Revoke Access", dashboard_bongloy_connect_path(@user.id), :method => "delete", :class => "btn btn-sm btn-danger mt-4")
+              = @user.bongloy_connect_account
 

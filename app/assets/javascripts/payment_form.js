@@ -1,7 +1,5 @@
 var publishableKey = document.head.querySelector("meta[name=bongloy-publishable-key]").content;
-// var stripe = Stripe('pk_test_XmdOzADDVEtGSyVop5l3Ydpz');
-// var stripe = Stripe("pk_test_RJJ_G0zW-6Ntl3Md-n8bQGp64Jtl9z9wiQBc5LPn7KY")
-Bongloy.setPublishableKey("pk_test_RJJ_G0zW-6Ntl3Md-n8bQGp64Jtl9z9wiQBc5LPn7KY", { bongloyAccount: "113cc1bc-5456-40f3-9a71-e257e73b3fbe"} )
+Bongloy.setPublishableKey(publishableKey, { bongloyAccount: "113cc1bc-5456-40f3-9a71-e257e73b3fbe"} )
 
 var checkoutForm = document.querySelector('[data-name="paymentForm"]');
 checkoutForm.addEventListener('submit', submitHandler, false);

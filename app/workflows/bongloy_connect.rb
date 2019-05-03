@@ -1,4 +1,4 @@
-class StripeConnect
+class BongloyConnect
   attr_accessor :code
 
   def initialize(code)
@@ -11,11 +11,9 @@ class StripeConnect
       code: @code,
       grant_type: "authorization_code",
       client_id: ENV.fetch("CLIENT_ID"),
-      redirect_uri: "https://f5ea27cb.ngrok.io/dashboard/bongloy_connects/new"
+      redirect_uri: "https://4f5d3892.ngrok.io/dashboard/bongloy_connects/new"
     }
 
-    binding.pry
-
-    response = HTTParty.post(ENV.fetch("STRIPE_CONNECT_URL"), query: parameters)
+    response = HTTParty.post(ENV.fetch("BONGLOY_CONNECT_URL"), query: parameters)
   end
 end

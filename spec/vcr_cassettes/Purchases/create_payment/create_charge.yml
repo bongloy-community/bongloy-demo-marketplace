@@ -1,0 +1,76 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api-staging.bongloy.com/v1/tokens
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Stripe/v1 RubyBindings/4.10.0
+      Authorization:
+      - Bearer FAKE_STRIPE_API_KEY
+      Content-Type:
+      - application/x-www-form-urlencoded
+      X-Stripe-Client-User-Agent:
+      - '{"bindings_version":"4.10.0","lang":"ruby","lang_version":"2.5.1 p57 (2018-03-29)","platform":"x86_64-darwin17","engine":"ruby","publisher":"stripe","uname":"Darwin
+        khomsovons-MacBook-Pro.local 18.5.0 Darwin Kernel Version 18.5.0: Mon Mar
+        11 20:40:32 PDT 2019; root:xnu-4903.251.3~3/RELEASE_X86_64 x86_64","hostname":"khomsovons-MacBook-Pro.local"}'
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      Connection:
+      - keep-alive
+      Keep-Alive:
+      - '30'
+  response:
+    status:
+      code: 401
+      message: Unauthorized
+    headers:
+      Date:
+      - Thu, 02 May 2019 03:48:01 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Server:
+      - nginx/1.14.1
+      Cache-Control:
+      - private, no-store
+      Pragma:
+      - no-cache
+      Www-Authenticate:
+      - Bearer realm="Bongloy", error="invalid_token", error_description="The access
+        token is invalid"
+      X-Request-Id:
+      - 5449a015-401c-4145-813e-57d3e632fcb7
+      X-Runtime:
+      - '0.106082'
+      Strict-Transport-Security:
+      - max-age=157784760; includeSubDomains; preload
+      X-Frame-Options:
+      - sameorigin
+      X-Content-Type-Options:
+      - nosniff
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Download-Options:
+      - noopen
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      Content-Security-Policy:
+      - 'default-src ''self'' https:; font-src ''self'' https: data:; img-src ''self''
+        https: data:; object-src ''none''; script-src https:; style-src ''self'' https:
+        ''unsafe-inline'''
+    body:
+      encoding: UTF-8
+      string: '{"error":{"type":"authentication_error","message":"No valid API key
+        provided."}}'
+    http_version: 
+  recorded_at: Thu, 02 May 2019 03:48:01 GMT
+recorded_with: VCR 4.0.0

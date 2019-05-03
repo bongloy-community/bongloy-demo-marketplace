@@ -4,10 +4,11 @@ class Product < ApplicationRecord
   validates :name, :price, presence: true
   validate :cover_product_presence
 
-  scope :search, ->(name) { where('LOWER(name) LIKE ?', "%#{name.downcase}%") }
+  scope :buyable, -> { where(status: true) }
+  scope :search, ->(name) { where("LOWER(name) LIKE ?", "%#{name.downcase}%").buyable }
 
   def cover_product_presence
-    errors.add(:cover_product, "can't be blank") unless cover_product.attached? 
+    errors.add(:cover_product, "can't be blank") unless cover_product.attached?
   end
 
   def price_in_cents
