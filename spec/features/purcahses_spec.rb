@@ -1,52 +1,32 @@
 require "rails_helper"
-require "fake_stripe"
 
 RSpec.describe "Purchases", type: :feature do
-  fixtures :all
-
-  let!(:user) { create(:user) }
-  let!(:product) { create(:product, :with_cover_product, user_id: user.id, name: "Oppo") }
-
-  before(:each) do
-    FakeStripe.stub_stripe
+  before do
+    stub_request(:post, "https://api-staging.bongloy.com/v1/charges").and_return(
+      body: File.read(Rails.root.join("spec/fixtures/charge.succeeded.json")),
+      status: 201,
+      headers: { "Content-Type" => "application/json;charset=utf-8" }
+    )
   end
 
-  it "can purchase a product", :js do
+  it "can purchase a product" do
+    user = create(:user)
+    product = create(:product, :with_cover_product, user_id: user.id, name: "Oppo")
+
     sign_in(user)
     visit new_product_charge_path(product)
 
-    expect(page).to have_content("Payment Information")
+    fill_in "cardNumber", with: "6200 0000 0000 0005"
+    fill_in "cardExpiry", with: "01/20"
+    fill_in "cardCVC", with: "123"
+    click_button "Buy"
 
-    fill_stripe_element("4242 4242 4242 4242", "12/20", "123")
+    sleep(5)
 
-    # assert flash message
     expect(page).to have_current_path(root_path)
-  end
 
-  def fill_stripe_element(card, exp, cvc)
-    card_iframe = all('iframe')[0]
-    exp_iframe = all('iframe')[1]
-    cvc_iframe = all('iframe')[2]
-
-    within_frame card_iframe do
-      card.chars.each do |piece|
-        find_field('cardnumber').send_keys(piece)
-      end
+    within("#flash") do
+      expect(page).to have_content("Your payment has been successfully processed")
     end
-
-    within_frame exp_iframe do
-      exp.chars.each do |piece|
-        find_field('exp-date').send_keys(piece)
-      end
-    end
-
-    within_frame cvc_iframe do
-      cvc.chars.each do |piece|
-        find_field('cvc').send_keys(piece)
-      end
-    end
-
-    click_on "Pay"
   end
 end
-

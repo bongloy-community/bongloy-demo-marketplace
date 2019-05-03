@@ -13,8 +13,7 @@ class Charge
   end
 
   def create
-    # binding.pry
-    result = Stripe::Charge.create({
+    Bongloy::Charge.create({
       amount: @order.total,
       currency: "usd",
       source: @token,
@@ -22,22 +21,7 @@ class Charge
         order: @order.to_json,
         product: @order.product.to_json }
       },
-      bongloy_account: @order.user.stripe_account_id
+      bongloy_account: @order.user.bongloy_account_id
     )
-   # paramters = { 
-   #    amount: @order.total,
-   #    currency: "USD",
-   #    source: @token
-   # }
-  # result = HTTParty.post(
-   #   "https://api-staging.bongloy.com/v1/charges",
-   #   body: paramters,
-   #   headers: {
-   #              "Http-Bongloy-Account" => @order.user.stripe_account_id,
-   #              authorization: "Bearer sk_test_-V19hpX5OzJgKDCAfmw8C9MGNqLKdDuxoxobSiQq3ds"
-   #  }
-   # )
-   binding.pry
   end
 end
-                # "BONGLOY_ACCOUNT" => @order.user.stripe_account_id,

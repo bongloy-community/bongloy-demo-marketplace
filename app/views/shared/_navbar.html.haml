@@ -3,9 +3,9 @@
     %section.header-main
       .container
         .row.align-items-center
-          .col-lg-5-24.col-sm-5.col-4
-            .brand-wrap
-              = link_to image_tag('logos/logo.png', width:'205', height:'50'), root_path
+          .col-lg-5-24.col-md-11.col-sm-5.col-10
+            .brand-wrap#logo
+              = link_to "Bongloy Demo Marketplace", root_path
           .col-lg-13-24.col-sm-12.order-3.order-lg-2
             %form{url: root_path, method: :get}
               .input-group.w-100
@@ -13,7 +13,7 @@
                 .input-group-append
                   %button.btn.btn-primary{:type => "submit", :title => "search"}
                     %i.fa.fa-search
-          .widgets-wrap.col-lg-6-24.col-sm-7.col-8.order-2.order-lg-3
+          .widgets-wrap.col-lg-6-24.col-md-1.col-sm-7.col-2.order-2.order-lg-3
             .widget-header.dropdown
               - if current_user
                 %a{"aria-expanded" => "false", "data-offset" => "20,10", "data-toggle" => "dropdown", :href => "#"}
@@ -23,7 +23,7 @@
                   .dropdown-menu.dropdown-menu-right{:style => "position: absolute; transform: translate3d(-120px, 44px, 0px); top: 0px; left: 0px; will-change: transform;", "x-placement" => "bottom-end"}
                     %li
                       = link_to("My account", dashboard_user_path(current_user.id), :class => "dropdown-item")
-                    - if current_user.stripe_account_id
+                    - if current_user.bongloy_account_id
                       %li
                         = link_to("Store", dashboard_products_path, :class => "dropdown-item")
                       %li

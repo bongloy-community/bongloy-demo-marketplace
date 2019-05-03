@@ -11,8 +11,8 @@ RSpec.describe "Pages", type: :feature do
   describe "Search" do
     before do
       user = create(:user, shop_name: "Samsung Store", email: "service@samsung.com")
-      create(:product, :with_cover_product, user_id: user.id, name: "samsung 10", price: 600)
-      create(:product, :with_cover_product, user_id: user.id, name: "samsung 10+", price: 800)
+      create(:product, :with_cover_product, user_id: user.id, name: "samsung 10", price: 600, status: true)
+      create(:product, :with_cover_product, user_id: user.id, name: "samsung 10+", price: 800, status: true)
     end
 
     it "match product" do

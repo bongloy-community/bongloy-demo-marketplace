@@ -1,9 +1,9 @@
 class Dashboard::ProductsController < Dashboard::BaseController
   before_action :set_product, only: %i[destroy update show edit]
-  before_action :connect_to_stripe
+  before_action :connect_to_bongloy
 
   def index
-    @product = current_user.products.decorate
+    @product = current_user.products
   end
 
   def new
@@ -30,7 +30,7 @@ class Dashboard::ProductsController < Dashboard::BaseController
   end
 
   def edit
-    @product = Product.find(params[:id]).decorate
+    @product = Product.find(params[:id])
   end
 
   def update
@@ -60,7 +60,7 @@ class Dashboard::ProductsController < Dashboard::BaseController
     params.require(:product).permit(:name, :price, :description, :cover_product).merge(user_id: current_user.id)
   end
 
-  def connect_to_stripe
-    redirect_to dashboard_users_path unless current_user.stripe_account_id.present?
+  def connect_to_bongloy
+    redirect_to dashboard_users_path unless current_user.bongloy_account_id.present?
   end
 end
