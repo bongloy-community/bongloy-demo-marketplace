@@ -11,7 +11,7 @@ RSpec.describe "Authentication", type: :feature do
     click_on("Create Account")
 
     expect(page).to have_current_path(root_path)
-    expect(page).to have_link("Store", href: dashboard_products_path)
+    expect(page).to have_content("Welcome! You have signed up successfully.")
   end
 
   it "login to their shop" do
@@ -24,6 +24,7 @@ RSpec.describe "Authentication", type: :feature do
     click_on "Log in"
 
     expect(page).to have_current_path(root_path)
+    expect(page).to have_content("Signed in successfully")
   end
 
   it "user logout their account" do
@@ -33,5 +34,6 @@ RSpec.describe "Authentication", type: :feature do
     visit destroy_user_session_path
 
     expect(page).to have_link("Register", href: new_user_registration_path)
+    expect(page).to have_content("Signed out successfully")
   end
 end

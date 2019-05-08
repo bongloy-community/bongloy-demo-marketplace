@@ -14,6 +14,5 @@ class UserDecorator < ApplicationDecorator
 
   def bongloy_url
     dashboard_bongloy_connects_authorize_path
-    #"https://staging-sandbox.bongloy.com/oauth/authorize?client_id=#{ENV['CLIENT_ID']}&redirect_uri=https://4f5d3892.ngrok.io/dashboard%2Fbongloy_connects%2Fnew&response_type=code"
   end
 end

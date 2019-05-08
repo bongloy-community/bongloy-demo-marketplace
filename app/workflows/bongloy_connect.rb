@@ -11,7 +11,7 @@ class BongloyConnect
       code: @code,
       grant_type: "authorization_code",
       client_id: ENV.fetch("CLIENT_ID"),
-      redirect_uri: "https://4f5d3892.ngrok.io/dashboard/bongloy_connects/new"
+      redirect_uri: "#{ENV.fetch('BASE_URL')}/dashboard/bongloy_connects/new"
     }
 
     response = HTTParty.post(ENV.fetch("BONGLOY_CONNECT_URL"), query: parameters)
