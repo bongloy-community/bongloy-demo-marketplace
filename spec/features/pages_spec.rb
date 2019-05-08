@@ -32,7 +32,7 @@ RSpec.describe "Pages", type: :feature do
       fill_in :search, with: "hauwei"
       click_on 'search'
 
-      expect(page).to have_content("No search results found")
+      expect(page).to have_content("No product results found")
     end
   end
 end

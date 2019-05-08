@@ -13,7 +13,7 @@ class Dashboard::BongloyConnectsController < Dashboard::BaseController
   end
 
   def authorize
-    redirect_to "https://staging-sandbox.bongloy.com/oauth/authorize?client_id=#{ENV['CLIENT_ID']}&redirect_uri=https://4f5d3892.ngrok.io/dashboard%2Fbongloy_connects%2Fnew&response_type=code"
+    redirect_to "https://staging-sandbox.bongloy.com/oauth/authorize?client_id=#{ENV.fetch('CLIENT_ID')}&redirect_uri=#{ENV.fetch('BASE_URL')}/dashboard%2Fbongloy_connects%2Fnew&response_type=code"
   end
 
   private
