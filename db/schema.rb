@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_03_035711) do
+ActiveRecord::Schema.define(version: 2019_03_15_034110) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -39,7 +39,7 @@ ActiveRecord::Schema.define(version: 2019_05_03_035711) do
   create_table "line_items", force: :cascade do |t|
     t.integer "order_id", null: false
     t.integer "product_id", null: false
-    t.integer "quantity", null: false
+    t.integer "quantity"
     t.integer "price", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -60,15 +60,15 @@ ActiveRecord::Schema.define(version: 2019_05_03_035711) do
     t.string "name", null: false
     t.text "description"
     t.integer "price", null: false
+    t.boolean "status", default: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.boolean "status", default: true
   end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
-    t.string "bongloy_account_id", default: ""
-    t.string "shop_name", default: ""
+    t.string "bongloy_account_id"
+    t.string "shop_name", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"

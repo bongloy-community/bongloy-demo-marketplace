@@ -23,5 +23,7 @@ class Charge
       },
       bongloy_account: @order.user.bongloy_account_id
     )
+  rescue Bongloy::StripeError => e
+    false
   end
 end
