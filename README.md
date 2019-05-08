@@ -43,7 +43,7 @@ After finish all the step above successfully, you have some demonstration data f
 Just go to login `http://localhost:3000/users/sign_in` with default
 
 ```sh
-email: test@example.com
+email: test@exa`mple.com
 password: 12345678
 ```
 Or you can sign up new one by this url `http://localhost:3000/users/sign_up` or just click and `Register` menu on homepage

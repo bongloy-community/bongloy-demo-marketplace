@@ -5,7 +5,7 @@ class CreateOrders < ActiveRecord::Migration[5.2]
       t.jsonb :payment_details, default: {}, null: true
       t.string :charge_id, null: true
       t.integer :total, null: true
-      t.string :status, null: false
+      t.integer :status, null: false
       t.timestamps
     end
   end

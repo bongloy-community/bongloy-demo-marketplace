@@ -14,6 +14,6 @@ class BongloyConnect
       redirect_uri: "#{ENV.fetch('BASE_URL')}/dashboard/bongloy_connects/new"
     }
 
-    response = HTTParty.post(ENV.fetch("BONGLOY_CONNECT_URL"), query: parameters)
+    HTTParty.post(ENV.fetch("BONGLOY_CONNECT_URL"), query: parameters)
   end
 end

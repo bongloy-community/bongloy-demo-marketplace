@@ -3,10 +3,10 @@
 class DeviseCreateUsers < ActiveRecord::Migration[5.2]
   def change
     create_table :users do |t|
-      t.string :email,              null: false, default: ""
-      t.string :stripe_account_id,  null: true, default: ""
-      t.string :shop_name,  null: true, default: ""
-      t.string :encrypted_password, null: false, default: ""
+      t.string :email,               null: false, default: ""
+      t.string :bongloy_account_id,  null: true
+      t.string :shop_name,           null: false, default: ""
+      t.string :encrypted_password,  null: false, default: ""
       t.string   :reset_password_token
       t.datetime :reset_password_sent_at
       t.datetime :remember_created_at
