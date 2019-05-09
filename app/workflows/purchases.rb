@@ -25,6 +25,8 @@ class Purchases
 
   def create_charge
     charge = Charge.create(token: @token, order: @order)
-    order.update!(charge_id: charge.id, payment_details: charge.to_json, status: charge.status)
+    if charge
+      order.update!(charge_id: charge.id, payment_details: charge.to_json, status: charge.status)
+    end
   end
 end
