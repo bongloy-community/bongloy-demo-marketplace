@@ -8,7 +8,7 @@ RSpec.describe Purchases, :vcr, :aggregate_failures do
   describe "payments" do
     it "create charge" do
       stub_request(:any, "https://api-staging.bongloy.com/v1/tokens").and_return(body: "{}")
-      WebMock.stub_request(:post, "https://api-staging.bongloy.com/v1/charges").and_return(
+      charge = stub_request(:post, "https://api-staging.bongloy.com/v1/charges").and_return(
         body: File.read(Rails.root.join("spec/fixtures/charge.succeeded.json")),
         status: 201,
         headers: { "Content-Type" => "application/json;charset=utf-8" }
@@ -16,12 +16,10 @@ RSpec.describe Purchases, :vcr, :aggregate_failures do
 
       payment_processing.run
 
-      expect(WebMock).to have_requested(:post, "https://api-staging.bongloy.com/v1/charges").with { |request|
-        payload = WebMock::Util::QueryMapper.query_to_values(request.body)
-        expect(payload["source"]).to eq("token")
-        expect(payload["amount"]).to eq("20000")
-        expect(payload["currency"]).to eq("usd")
-      }
+      payload = JSON.parse(charge.response.body)
+
+      expect(payload["amount"]).to eq(100)
+      expect(payload["currency"]).to eq("usd")
     end
   end
 end
