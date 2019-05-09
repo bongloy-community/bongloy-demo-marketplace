@@ -21,6 +21,8 @@ RSpec.describe "Purchases", type: :feature do
     fill_in "cardCVC", with: "123"
     click_button "Buy"
 
+    sleep(10)
+
     expect(page).to have_current_path(root_path)
 
     within("#flash") do
