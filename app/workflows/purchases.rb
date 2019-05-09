@@ -11,7 +11,7 @@ class Purchases
   def run
     Order.transaction do
       create_order
-      charge
+      create_charge
       @success = order.succeeded?
     end
   end
@@ -19,15 +19,12 @@ class Purchases
   private
 
   def create_order
-    self.order = Order.create!({ user_id: @user.id, status: "created", total: @product.price_in_cents })
-    order.create_line_item({ order_id: order.id, product_id: @product.id, price: @product.price })
+    self.order = Order.create!(user_id: @user.id, status: "created", total: @product.price_in_cents)
+    order.create_line_item(order_id: order.id, product_id: @product.id, price: @product.price)
   end
 
-  def charge
+  def create_charge
     charge = Charge.create(token: @token, order: @order)
-
-    if charge
-      order.update!(charge_id: charge.id, payment_details: charge.to_json, status: charge.status)
-    end
+    order.update!(charge_id: charge.id, payment_details: charge.to_json, status: charge.status)
   end
 end
