@@ -1,19 +1,23 @@
-language: ruby
+sudo: false
 
-rvm:
-  - 2.5.1
-  - ruby-head
-
-gemfile:
-  - Gemfile
-
-script:
-  - bundle exec rails db:setup
-  - bundle exec rspec spec
+dist: trusty
 
 cache: bundler
 
-services:
-  - postgresql
+language: ruby
+
 addons:
-  postgresql: "9.4"
+  postgresql: '10'
+  apt:
+    packages:
+      - postgresql-10
+      - postgresql-client-10
+
+env:
+  global:
+    - PGUSER=travis
+    - PGPORT=5433
+
+before_script:
+  - bundle exec rails db:setup RAILS_ENV=test
+  - bundle exec rspec spec
