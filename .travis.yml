@@ -1,0 +1,19 @@
+language: ruby
+
+rvm:
+  - 2.5.1
+  - ruby-head
+
+gemfile:
+  - Gemfile
+
+script:
+  - bundle exec rails db:setup
+  - bundle exec rspec spec
+
+cache: bundler
+
+services:
+  - postgresql
+addons:
+  postgresql: "9.4"
