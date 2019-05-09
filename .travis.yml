@@ -12,6 +12,8 @@ addons:
     packages:
       - postgresql-10
       - postgresql-client-10
+      - google-chrome-stable
+      - chromium-chromedriver
 
 env:
   global:
@@ -19,5 +21,6 @@ env:
     - PGPORT=5433
 
 before_script:
+  - ln -s /usr/lib/chromium-browser/chromedriver ~/bin/chromedriver
   - bundle exec rails db:setup RAILS_ENV=test
   - bundle exec rspec spec
