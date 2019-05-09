@@ -26,4 +26,11 @@ FactoryBot.define do
       end
     end
   end
+
+  factory :charge do
+    skip_create
+
+    token { SecureRandom.uuid }
+    initialize_with { new(token:token, order: :order) }
+  end
 end

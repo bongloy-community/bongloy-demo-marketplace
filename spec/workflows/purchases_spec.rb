@@ -18,16 +18,12 @@ RSpec.describe "Purchases", :vcr, :aggregate_failures do
     end
 
     it "create charge" do
-      payload = JSON.parse(payment_processing.order.payment_details)
-
-      expect(payment_processing.order).to have_attributes(
-        status: "succeeded",
-        charge_id: a_string_starting_with("ch_"),
-        payment_details: payment_processing.order.payment_details
-      )
-
-      expect(payload["amount"]).to eq(100)
-      expect(payload["currency"]).to eq("usd")
+      expect(WebMock).to have_requested(:post, "https://api-staging.bongloy.com/v1/charges").with { |request|
+        payload = WebMock::Util::QueryMapper.query_to_values(request.body)
+        expect(payload["source"]).to eq("token")
+        expect(payload["amount"]).to eq("20000")
+        expect(payload["currency"]).to eq("usd")
+      }
     end
   end
 end
