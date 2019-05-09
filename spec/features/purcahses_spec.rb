@@ -9,7 +9,7 @@ RSpec.describe "Purchases", type: :feature do
     )
   end
 
-  it "can purchase a product" do
+  it "can purchase a product", js: true do
     user = create(:user)
     product = create(:product, :with_cover_product, user_id: user.id, name: "Oppo")
 
@@ -20,8 +20,6 @@ RSpec.describe "Purchases", type: :feature do
     fill_in "cardExpiry", with: "01/20"
     fill_in "cardCVC", with: "123"
     click_button "Buy"
-
-    sleep(5)
 
     expect(page).to have_current_path(root_path)
 
