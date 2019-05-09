@@ -7,7 +7,7 @@
     = csrf_meta_tags
     = csp_meta_tag
     = javascript_include_tag("https://staging-sandbox.bongloy.com/v3")
-    = tag(:meta, name: "bongloy-publishable-key", content: ENV.fetch('PUBLISHABLE_KEY'))
+    = tag(:meta, name: "bongloy-publishable-key", content: Rails.application.credentials.publishable_key)
     = tag(:meta, name: "bongloy-account", content: bongloy_account)
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'

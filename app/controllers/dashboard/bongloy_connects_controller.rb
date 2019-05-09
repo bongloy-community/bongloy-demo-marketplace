@@ -13,7 +13,7 @@ class Dashboard::BongloyConnectsController < Dashboard::BaseController
   end
 
   def authorize
-    redirect_to "https://staging-sandbox.bongloy.com/oauth/authorize?client_id=#{ENV.fetch('CLIENT_ID')}&redirect_uri=#{ENV.fetch('BASE_URL')}/dashboard%2Fbongloy_connects%2Fnew&response_type=code"
+    redirect_to "#{Bongloy.connect_base}/oauth/authorize?client_id=#{Rails.application.credentials.client_id}&redirect_uri=#{new_dashboard_bongloy_connect_url}&response_type=code"
   end
 
   private

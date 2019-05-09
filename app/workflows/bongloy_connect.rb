@@ -7,13 +7,13 @@ class BongloyConnect
 
   def connect
     parameters = {
-      client_secret: ENV.fetch("CLIENT_SECRET"),
+      client_secret: Rails.application.credentials.client_secret,
       code: @code,
       grant_type: "authorization_code",
-      client_id: ENV.fetch("CLIENT_ID"),
-      redirect_uri: "#{ENV.fetch('BASE_URL')}/dashboard/bongloy_connects/new"
+      client_id: Rails.application.credentials.client_id,
+      redirect_uri: new_dashboard_bongloy_connect_url
     }
 
-    HTTParty.post(ENV.fetch("BONGLOY_CONNECT_URL"), query: parameters)
+    HTTParty.post(Rails.application.credentials.bongloy_connect_url,query: parameters)
   end
 end
