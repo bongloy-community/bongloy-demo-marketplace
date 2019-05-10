@@ -1,4 +1,6 @@
 class BongloyConnect
+  include Rails.application.routes.url_helpers
+
   attr_accessor :code
 
   def initialize(code)

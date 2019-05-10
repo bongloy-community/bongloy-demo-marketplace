@@ -1,5 +1,6 @@
 class HomeController < ApplicationController
   def index
+    binding.pry
     if params[:search]
       @products = Product.search(params[:search])
     else
