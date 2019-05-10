@@ -19,6 +19,6 @@ class Dashboard::BongloyConnectsController < Dashboard::BaseController
   private
 
   def get_bongloy_user_data
-    BongloyConnect.new(params[:code]).connect
+    BongloyConnect.new(params[:code], new_dashboard_bongloy_connect_url).connect
   end
 end
