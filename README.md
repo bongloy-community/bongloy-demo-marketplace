@@ -1,4 +1,5 @@
 # Bongloy demo marketplace
+[![Build Status](https://travis-ci.org/khomsovon/bongloy-demo-marketplace.svg?branch=master)](https://travis-ci.org/khomsovon/bongloy-demo-marketplace)
 
 Bongloy demo marketplace is a Ruby on rails app which demonstrates how to use Bongloy
 
