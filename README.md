@@ -21,16 +21,27 @@ Bongloy demo marketplace is a Ruby on rails app which demonstrates how to use Bo
   rails db:create && rails db:migrate && rails db:seed
   ```
 
-Fill in your environment variable from your Bongloy account in `.env` file.
+We use Rails credentials added config/credentials.yml.enc file to store production app secrets. Just type command below with text editor that you prefer
+
+```bash
+EDITOR=vim rails credentials:edit
+```
+
+Fill in your secret variable from your Bongloy account.
 You can register and access [here](https://staging-sandbox.bongloy.com) to get these confidential keys
 ```sh
-PUBLISHABLE_KEY=bongloy_publishable_key
-SECRET_KEY=bongloy_secret_key
-CLIENT_ID=bongloy_client_key
-CLIENT_SECRET=bongloy_client_secret
-BASE_URL=https://16d83e4a.ngrok.io
-BONGLOY_CONNECT_URL=https://api-staging.bongloy.com/oauth/token
+#aws:
+#  access_key_id: amazon_access_key
+#  secret_access_key: amazon_secret_access_key
+
+# bongloy credentials
+publishable_key: pk_test_abcd
+secret_key: sk_test_abc
+client_id: bongloy_client_id
+client_secret: bongoy_client_secret
+bongloy_connect_url: https://api-staging.bongloy.com/oauth/token
 ```
+> **Note:** If you deploy to production server, You should change to `config.active_storage.service = :amazon` and put your aws credentials
 
 Run Rails server
 ```sh
@@ -70,4 +81,6 @@ After that you can copy https url to past in Bongloy connected account and put i
 
 <img src="app/assets/images/screenshots/redirect_url.png" width="600">
 
-That's all for instruction!
+All products has been created when you seed data but I will not display until you connect with `Bongloy Connect`
+
+Happy coding!
