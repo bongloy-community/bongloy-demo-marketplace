@@ -17,7 +17,7 @@
               - @orders.each do |order|
                 %tr
                   %td
-                    = link_to order.id, dashboard_order_path(order.id)
+                    = order.id
                   %td
                     = order.product.first.name
                   %td

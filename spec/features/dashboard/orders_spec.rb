@@ -13,6 +13,5 @@ RSpec.describe "Orders", type: :feature do
     expect(page).to have_content("succeeded")
     expect(page).to have_content("ch_")
     expect(page).to have_content("800")
-    expect(page).to have_link(href: dashboard_order_path(order))
   end
 end

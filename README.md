@@ -81,6 +81,6 @@ After that you can copy https url to past in Bongloy connected account and put i
 
 <img src="app/assets/images/screenshots/redirect_url.png" width="600">
 
-All products has been created when you seed data but I will not display until you connect with `Bongloy Connect`
+All products has been created when you seed data but it doesn't display until you connect with `Bongloy Connect`
 
 Happy coding!

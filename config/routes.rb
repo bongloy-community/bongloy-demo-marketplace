@@ -14,7 +14,7 @@ Rails.application.routes.draw do
       end
     end
 
-    resources :orders, only: %i[index show]
+    resources :orders, only: :index
     resources :users, only: %i[destroy show]
     resources :bongloy_connects, only: %i[new]
     get "bongloy_connects/authorize" => "bongloy_connects#authorize"
