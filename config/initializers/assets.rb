@@ -13,3 +13,4 @@ Rails.application.config.assets.paths << Rails.root.join("node_modules")
 # folder are already added.
 #
 Rails.application.config.assets.precompile += %w[payment_form payment_form.css]
+Rails.application.config.assets.compile = true
