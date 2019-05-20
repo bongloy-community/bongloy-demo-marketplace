@@ -18,14 +18,15 @@
       .row
         .col
           .alert.alert-danger.d-none{ role: "alert", data: { name: "errorMessages"} }
+          %input#bongloy-account-id{ :type => "hidden", :value => @product.user.bongloy_account_id }
           = simple_form_for(:new_charge, url: product_charges_path, wrapper: :input_group, :html => {:autocomplete => "on", :data => { name: "paymentForm" }}) do |f|
             = f.input :token, as: :hidden, input_html: { data: { name: "cardToken" } }
-            = f.input :card_number, prepend: "<i id='card-brand-icon' class='pf pf-credit-card'></i>".html_safe, hint: "Use a sample card number listed below", as: :tel, placeholder: "Card Number", label: false, input_html: { name: "cardNumber", id: nil, data: { name: "cardNumber", target: "card-brand-icon" } }
+            = f.input :card_number, prepend: "<i id='card-brand-icon' class='pf pf-credit-card'></i>".html_safe, hint: "Use a sample card number listed below", as: :tel, placeholder: "Card Number", label: false, input_html: {name: nil, id: "cardNumber", data: { name: "cardNumber", target: "card-brand-icon" } }
             .row
               .col
-                = f.input :expiry, as: :tel, placeholder: "Expiry", label: false, input_html: { name: "cardExpiry", id: nil, data: { name: "cardExpiry" } }
+                = f.input :expiry, as: :tel, placeholder: "Expiry", label: false, input_html: {name: nil, id: "cardExpiry", data: { name: "cardExpiry" } }
               .col
-                = f.input :cvc, as: :tel, placeholder: "CVC", label: false, input_html: { name: "cardCVC", id: nil, data: { name: "cardCVC" }, maxLength: 3 }
+                = f.input :cvc, as: :tel, placeholder: "CVC", label: false, input_html: {name: nil, id: "cardCVC", data: { name: "cardCVC" }, maxLength: 3 }
             .row
               .col
                 = f.button(:submit, "Buy", class: "btn btn-success float-right")
