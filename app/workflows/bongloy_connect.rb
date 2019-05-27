@@ -15,6 +15,6 @@ class BongloyConnect
       redirect_uri: @redirected_url
     }
 
-    HTTParty.post(Rails.application.credentials.bongloy_connect_url,query: parameters)
+    HTTParty.post("#{Bongloy.connect_base}/oauth/token", body: parameters)
   end
 end
