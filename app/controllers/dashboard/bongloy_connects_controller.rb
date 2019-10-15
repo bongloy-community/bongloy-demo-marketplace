@@ -12,10 +12,6 @@ class Dashboard::BongloyConnectsController < Dashboard::BaseController
     redirect_to dashboard_user_path(current_user.id)
   end
 
-  def authorize
-    redirect_to "#{Bongloy.connect_base}/oauth/authorize?client_id=#{Rails.application.credentials.client_id}&redirect_uri=#{new_dashboard_bongloy_connect_url}&response_type=code"
-  end
-
   private
 
   def get_bongloy_user_data

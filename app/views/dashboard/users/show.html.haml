@@ -8,13 +8,20 @@
           %dl.dlist-align
             %dt Shop Name:
             %dd
-              = @user.shop_name
+              = current_user.shop_name
           %dl.dlist-align
             %dt Email:
             %dd
-              = @user.email
+              = current_user.email
           %dl.dlist-align
             %dt Bongloy Account Id:
             %dd
-              = @user.bongloy_connect_account
-
+              - if current_user.bongloy_account_id.blank?
+                - query_params = { client_id: Rails.application.credentials.client_id,
+                  redirect_uri: new_dashboard_bongloy_connect_url,
+                  response_type: :code , state: "bongloy_connected"}
+                = link_to("Connect with Bongloy",
+                  "#{Bongloy.connect_base}/oauth/authorize?#{query_params.to_query}",
+                  { class: "btn btn-success btn-sm light-blue" })
+              - else
+                = current_user.bongloy_account_id
