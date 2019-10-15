@@ -1,5 +1,7 @@
 var publishableKey = document.head.querySelector("meta[name=bongloy-publishable-key]").content;
-var bongloyAccount= document.getElementById("bongloy-account-id").value
+var bongloyAccount= document.getElementById("bongloy-account-id").value;
+console.log(publishableKey);
+console.log(bongloyAccount);
 
 Bongloy.setPublishableKey(publishableKey, { bongloyAccount: bongloyAccount })
 
