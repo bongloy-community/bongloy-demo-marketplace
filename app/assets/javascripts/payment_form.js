@@ -22,6 +22,7 @@ function submitHandler(event) {
   };
 
   Bongloy.createToken('card', cardObject, function(statusCode, response) {
+    console.log(response);
     var errorMessages = document.querySelector('[data-name="errorMessages"]');
     errorMessages.classList.remove('d-block');
     errorMessages.classList.add('d-none');
