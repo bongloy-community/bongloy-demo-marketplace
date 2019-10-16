@@ -1,10 +1,7 @@
 var publishableKey = document.head.querySelector("meta[name=bongloy-publishable-key]").content;
 var bongloyAccount= document.getElementById("bongloy-account-id").value;
-console.log(publishableKey);
-console.log(bongloyAccount);
 
-// Bongloy.setPublishableKey(publishableKey, { bongloyAccount: bongloyAccount });
-Bongloy.setPublishableKey(publishableKey);
+Bongloy.setPublishableKey(publishableKey, { bongloyAccount: bongloyAccount });
 
 var checkoutForm = document.querySelector('[data-name="paymentForm"]');
 checkoutForm.addEventListener('submit', submitHandler, false);
@@ -22,7 +19,6 @@ function submitHandler(event) {
   };
 
   Bongloy.createToken('card', cardObject, function(statusCode, response) {
-    console.log(response);
     var errorMessages = document.querySelector('[data-name="errorMessages"]');
     errorMessages.classList.remove('d-block');
     errorMessages.classList.add('d-none');
