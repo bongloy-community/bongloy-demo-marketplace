@@ -3,7 +3,8 @@ var bongloyAccount= document.getElementById("bongloy-account-id").value;
 console.log(publishableKey);
 console.log(bongloyAccount);
 
-Bongloy.setPublishableKey(publishableKey, { bongloyAccount: bongloyAccount })
+// Bongloy.setPublishableKey(publishableKey, { bongloyAccount: bongloyAccount });
+Bongloy.setPublishableKey(publishableKey);
 
 var checkoutForm = document.querySelector('[data-name="paymentForm"]');
 checkoutForm.addEventListener('submit', submitHandler, false);
