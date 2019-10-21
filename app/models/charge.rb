@@ -17,12 +17,12 @@ class Charge
       amount: @order.total,
       currency: "usd",
       source: @token,
+      application_fee_amount: 100,
       metadata: {
         order: @order.to_json,
         product: @order.product.to_json }
       },
-      bongloy_account: @order.user.bongloy_account_id,
-      application_fee_amount: 1
+      bongloy_account: @order.user.bongloy_account_id
     )
   rescue Bongloy::StripeError => e
     false

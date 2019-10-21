@@ -7,8 +7,8 @@ RSpec.describe Purchases, :vcr, :aggregate_failures do
 
   describe "payments" do
     it "create charge" do
-      stub_request(:any, "https://api-staging.bongloy.com/v1/tokens").and_return(body: "{}")
-      charge = stub_request(:post, "https://api-staging.bongloy.com/v1/charges").and_return(
+      stub_request(:any, "https://api.bongloy.com/v1/tokens").and_return(body: "{}")
+      charge = stub_request(:post, "https://api.bongloy.com/v1/charges").and_return(
         body: File.read(Rails.root.join("spec/fixtures/charge.succeeded.json")),
         status: 201,
         headers: { "Content-Type" => "application/json;charset=utf-8" }
