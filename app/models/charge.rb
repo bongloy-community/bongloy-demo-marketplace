@@ -22,7 +22,7 @@ class Charge
         product: @order.product.to_json }
       },
       bongloy_account: @order.user.bongloy_account_id,
-      application_fee_amount: (@order.total * 1 /100).to_i
+      application_fee_amount: 1
     )
   rescue Bongloy::StripeError => e
     false
